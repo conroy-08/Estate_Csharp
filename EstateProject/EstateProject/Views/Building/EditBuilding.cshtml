@@ -1,0 +1,240 @@
+﻿
+@{
+    ViewBag.Title = "ChinhSuaToaNha";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-content-inner">
+    <div class="breadcrumbs" id="breadcrumbs">
+        <script type="text/javascript">
+                    try {
+                        ace.settings.check('breadcrumbs', 'fixed')
+                    } catch (e) {
+                    }
+        </script>
+        <ul class="breadcrumb">
+            <li>
+                <i class="ace-icon fa fa-home home-icon"></i>
+                <a href="../index1.html">
+                    Trang chủ
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    Quản lý tòa nhà
+                </a>
+            </li>
+            <li class="active">Chỉnh sửa tòa nhà</li>
+        </ul><!-- /.breadcrumb -->
+    </div>
+    <div class="page-content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div id="message" style="display: none">
+
+                </div>
+                <form class="form-horizontal" role="form" id="formSubmit">
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label no-padding-right">Tên tòa nhà :</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="name" />
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="district"> Quận :</label>
+                        <div class="col-sm-3" style="margin-bottom: 10px;">
+                            <select id="district">
+                                <option value=""> -- Chọn quận -- </option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="ward">Phường :</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="ward" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="street">Đường :</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="street" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="structure">Kết cấu :</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="structure" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="numberOfBasement">Số tầng hầm :</label>
+                        <div class="col-sm-7">
+                            <input type="number" id="numberOfBasement" class="form-control" name="numberOfBasement" min="0" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="buildingArea">Diện tích sàn : </label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" min="0" id="buildingArea" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="direction">Hướng :</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="direction" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="level">Hạng :</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="level" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="rentArea">Diện tích thuê  :</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" min="0" id="rentArea" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="descriptionArea">Mô tả diện tích  :</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="descriptionArea" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="rentPrice">Giá thuê  :</label>
+                        <div class="col-sm-7">
+                            <input type="number" id="rentPrice" class="form-control" name="rentPrice" min="0" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="rentPriceDescription">Mô tả giá  :</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="rentPriceDescription" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="carCost">Phí ô tô  :</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="carCost" />
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="motorbikeCost">Phí mô tô  :</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="motorbikeCost" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="overtimeCost">Phí ngoài giờ  :</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="overtimeCost" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="electricityCost">Tiền điện :</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="electricityCost" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="deposit">Đặt cọc  :</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="deposit" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="payment">Thanh toán  :</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="payment" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="timeRent">Thời hạn thuê :</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" min="0" id="timeRent" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="timeDecorator">Thời gian trang trí :</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="timeDecorator" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="managerName">Tên quản lý :</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="managerName" />
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="managerPhone">SĐT quản lý :</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="managerPhone" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="brokerageFee">Phí mô giới :</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="brokerageFee" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right"> Loại tòa nhà :</label>
+                        <div class="col-sm-7">
+                            <input type="checkbox" /> <label> Tầng Trệt </label>
+                            <input type="checkbox" /> <label> Nội Thất </label>
+                            <input type="checkbox" /> <label> Nguyên Căn </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="note">Ghi chú :</label>
+                        <div class="col-sm-7">
+                            <textarea id="note" name="note" rows="4" cols="99"></textarea>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="thumbnail">Ảnh đại diện</label>
+                        <div class="col-sm-4">
+                            <input style="margin-top: 6px;" type="file" id="thumbnail" accept="image/png, image/jpeg, image/jpg" placeholder="thumbnail">
+                        </div>
+                        <div class="col-sm-5">
+                            <img id="fileImage" alt="Ảnh đại diện" style="width: 300px; height: 400px;" />
+                        </div>
+
+                    </div>
+                    <input type="hidden" id="buildlingId" />
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+                            <!-- If buildingId != null thi show Cap Nhat-->
+                            <!--  <div  >
+                                <button class="btn btn-info" type="button"  id="btnUpdateBuilding" >
+                                    <i class="ace-icon fa fa-check bigger-110"></i>
+                                    Cập nhật tòa nhà
+                                </button>
+                            </div>-->
+
+                            <div>
+                                <button class="btn btn-info" type="button" id="btnAddBuilding">
+                                    <i class="ace-icon fa fa-check bigger-110"></i>
+                                    Thêm tòa nhà
+                                </button>
+                            </div>
+                            <button class="btn" type="reset" style="    margin-left: 200px;   margin-top: -64px;">
+                                <i class="ace-icon fa fa-undo bigger-110"></i>
+                                Hủy
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

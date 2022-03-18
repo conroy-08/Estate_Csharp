@@ -1,0 +1,259 @@
+﻿
+@{
+    ViewBag.Title = "Cài đặt cấu hình";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="main-content-inner">
+    <div class="breadcrumbs" id="breadcrumbs">
+        <script type="text/javascript">
+            try {
+                ace.settings.check('breadcrumbs', 'fixed')
+            } catch (e) {
+            }
+        </script>
+        <ul class="breadcrumb">
+            <li>
+                <i class="ace-icon fa fa-home home-icon"></i>
+                <a href="../index1.html">
+                    Trang chủ
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    Cài đặt
+                </a>
+            </li>
+            <li class="active">Cài đặt cấu hình</li>
+        </ul><!-- /.breadcrumb -->
+    </div>
+    <div class="page-content">
+        <div class="row">
+            <div>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" id="settingTab" role="tablist">
+                    <li class="nav-item active">
+                        <a class="nav-link active" data-toggle="tab" href="#general" role="tab">General</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#mailServer" role="tab">Mail Server</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#mailTemplates" role="tab">Mail Templates</a>
+                    </li>
+
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active p-3" id="general" role="tabpanel">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <form class="form-horizontal">
+
+
+                                    <div class="form-group">
+                                        <label class="col-sm-4 col-form-label">Site Name:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="SITE_NAME"
+                                                   required />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-4 col-form-label">Copyright:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="COPYRIGHT"
+                                                   required />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-4 col-form-label">Site Logo:</label>
+                                        <div class="col-sm-8">
+                                            <img id="thumbnail" alt="Site Logo thumbnail"
+                                                 width="150" height="70" />
+                                            <input type="file" id="fileImage" name="fileImage" accept="image/png, image/jpeg" />
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="margin-bottom:10px">
+                                        <label class="col-sm-4 col-form-label">Currency Type:</label>
+                                        <div class="col-sm-8">
+                                            <select name="CURRENCY_ID" class="form-control">
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="margin-bottom:10px">
+                                        <label class="col-sm-4 col-form-label">Currency Symbol Position:</label>
+                                        <div class="col-sm-8">
+                                            <select name="CURRENCY_SYMBOL_POSITION" class="form-control">
+                                                <option value="Before price">Before price</option>
+                                                <option value="After price">After price</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="margin-bottom:10px">
+                                        <label class="col-sm-4 col-form-label">Decimal Point Type:</label>
+                                        <div class="col-sm-8">
+                                            <select name="DECIMAL_POINT_TYPE" class="form-control">
+                                                <option value="POINT">Point (.)</option>
+                                                <option value="COMMA">Comma (,)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="margin-bottom:10px">
+                                        <label class="col-sm-4 col-form-label">Decimal Digits:</label>
+                                        <div class="col-sm-8">
+                                            <select name="DECIMAL_DIGITS" class="form-control">
+                                                <option value="0">0</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="margin-bottom:10px">
+                                        <label class="col-sm-4 col-form-label">Thousands Point Type:</label>
+                                        <div class="col-sm-8">
+                                            <select name="THOUSANDS_POINT_TYPE" class="form-control">
+                                                <option value="POINT">Point (.)</option>
+                                                <option value="COMMA">Comma (,)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center " >
+                                        <button class="btn btn-info text-center" type="button">
+                                            <i class="ace-icon fa fa-check bigger-110"></i>
+                                            Save
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane p-3" id="mailServer" role="tabpanel">
+                        <form class="form-horizontal" method="post">
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">SMTP Server Host Name:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" name="MAIL_HOST"
+                                           required />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">Port Number:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" name="MAIL_PORT"
+                                           required />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">Username:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" name="MAIL_USERNAME"
+                                           required />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">Password:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" name="MAIL_PASSWORD"
+                                           required />
+                                </div>
+                            </div>
+
+                            <div class="form-group row" style="margin-bottom:10px">
+                                <label class="col-sm-4 col-form-label">Server Authentication Required:</label>
+                                <div class="col-sm-8">
+                                    <select name="SMTP_AUTH" class="form-control">
+                                        <option value="true">True</option>
+                                        <option value="false">False</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row" style="margin-bottom:10px"  >
+                                <label class="col-sm-4 col-form-label">Server Requires Secured Connection (TLS):</label>
+                                <div class="col-sm-8">
+                                    <select name="SMTP_SECURED" class="form-control">
+                                        <option value="true">True</option>
+                                        <option value="false">False</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">From E-mail Address:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" name="MAIL_FROM"
+                                           required />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">Sender Name:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" name="MAIL_SENDER_NAME"
+                                           required />
+                                </div>
+                            </div>
+
+                            <div class="text-center ">
+                                <button class="btn btn-info text-center" type="button">
+                                    <i class="ace-icon fa fa-check bigger-110"></i>
+                                    Save
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane p-3" id="mailTemplates" role="tabpanel">
+                        <div class="tab-pane active p-3" id="customerVerification" role="tabpanel">
+                            <div class="form-group row" style="margin-bottom:10px">
+                                <label class="col-sm-2 col-form-label">E-mail Subject:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="CUSTOMER_VERIFY_SUBJECT"
+                                           required />
+                                </div>
+                            </div>
+
+                            <div class="form-group row" style="margin-bottom:10px">
+                                <label class="col-sm-2 col-form-label">E-mail Content:</label>
+                                <div class="col-sm-10">
+                                    <textarea rows="5" name="CUSTOMER_VERIFY_CONTENT" id="customerVerificationContent"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center ">
+                            <button class="btn btn-info text-center" type="button">
+                                <i class="ace-icon fa fa-check bigger-110"></i>
+                                Save
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>	<!--main-content-inner -->
+
+
+@section scripts {
+    <script type="text/javascript">
+        let editor = '';
+        $(document).ready(function () {
+            editor = CKEDITOR.replace('customerVerificationContent');
+        })
+    </script>
+}
