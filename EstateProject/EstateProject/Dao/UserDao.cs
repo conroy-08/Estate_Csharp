@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using EstateProject.Common;
 using EstateProject.Models;
 
 namespace EstateProject.Dao
@@ -16,13 +17,18 @@ namespace EstateProject.Dao
             dbContext = new EstateDbContext();
         }
 
-
         public long Insert(user entity)
         {
             dbContext.users.Add(entity);
             dbContext.SaveChanges();
 
             return entity.id;
+        }
+        public void Update(user entity, string newPassword)
+        {
+            //dbContext.users.Update(entity);
+            entity.password = Encrytor.MD5Hash(newPassword);
+            dbContext.SaveChanges();
         }
 
         public user GetById(String userName)

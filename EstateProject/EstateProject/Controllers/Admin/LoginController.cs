@@ -31,8 +31,13 @@ namespace EstateProject.Controllers.Admin
                 {
                     var user = dao.GetById(model.UserName);
                     var userSession = new UserLogin();
-                    userSession.UserName = user.username;
+                    userSession.UserName = user.fullname;
                     userSession.UserId = user.id;
+                    userSession.role = user.role;
+                    Session["FullName"] = user.fullname;
+                    Session["Role"] = user.role;
+                    Session["UserId"] = user.id;
+                    Session["UserName"] = user.username;
 
                     Session.Add(CommonConstants.USER_SESSION,userSession);
 
@@ -61,5 +66,14 @@ namespace EstateProject.Controllers.Admin
             }
             return View("Index");
         }
+
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            Session.RemoveAll();
+            return RedirectToAction("Index", "Login");
+        }
+
+
     }
 }
