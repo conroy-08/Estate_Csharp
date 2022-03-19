@@ -286,6 +286,7 @@
     <Content Include="Assets\login\vendor\select2\select2.js" />
     <Content Include="Assets\login\vendor\select2\select2.min.css" />
     <Content Include="Assets\login\vendor\select2\select2.min.js" />
+    <Content Include="Assets\Upload\Avartar\imageTest.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

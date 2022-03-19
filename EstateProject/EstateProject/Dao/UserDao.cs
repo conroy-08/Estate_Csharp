@@ -31,6 +31,16 @@ namespace EstateProject.Dao
             dbContext.SaveChanges();
         }
 
+        public void UpdateProfile(user entity, string fullname,string email,string phone, string image)
+        {
+            //dbContext.users.Update(entity);
+            entity.fullname = fullname;
+            entity.email = email;
+            entity.phone = phone;
+            entity.image = image;
+            dbContext.SaveChanges();
+        }
+
         public user GetById(String userName)
         {
             return dbContext.users.SingleOrDefault(x => x.username == userName);

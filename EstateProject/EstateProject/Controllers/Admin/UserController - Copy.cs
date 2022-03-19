@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -19,13 +20,43 @@ namespace EstateProject.Controllers
 
         public ActionResult Profile()
         {
-            return View();
+            if(Session["UserName"] != null)
+            {
+                var dao = new UserDao();
+                var user = dao.GetById(Session["UserName"].ToString());
+                return View(user);
+            }
+            return RedirectToAction("Index","Login");
         }
 
+        [HttpPost]
+        public ActionResult profile(user users)
+        {
+            if (Session["UserName"] != null)
+            {
+                var path = "/Assets/Upload/Avartar/";
+                var dao = new UserDao();
+                var user = dao.GetById(Session["UserName"].ToString());
+              
+                Session["FullName"] = user.fullname;
+                //Use Namespace called :  System.IO  
+                string FileName = Path.GetFileNameWithoutExtension(users.imageFile.FileName);                           
+                //To Get File Extension  
+                string FileExtension = Path.GetExtension(users.imageFile.FileName);
+                //Add Current Date To Attached File Name  
+                FileName = DateTime.Now.ToString("yyyyMMdd") + "-" + FileName.Trim() + FileExtension;
+
+                users.image = path + FileName;
+                users.imageFile.SaveAs(users.image);
+
+                dao.UpdateProfile(user,users.fullname,users.email,users.phone,users.image);
+                return View(user);
+            }
+            return RedirectToAction("Index", "Login");
+        }
 
         public ActionResult ChangePassWord()
         {
-
             return View();
         }
 
