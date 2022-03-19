@@ -5,6 +5,7 @@ namespace EstateProject.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web;
 
     public partial class user
     {
@@ -15,6 +16,12 @@ namespace EstateProject.Models
             assignmentcustomers = new HashSet<assignmentcustomer>();
             transactions = new HashSet<transaction>();
         }
+
+
+        public HttpPostedFileBase imageFile { get; set; }
+
+        [StringLength(255)]
+        public string image { get; set; }
 
         public int id { get; set; }
 
