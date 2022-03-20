@@ -37,22 +37,25 @@ namespace EstateProject.Controllers
                 var dao = new UserDao();                
                 var user = dao.GetById(Session["UserName"].ToString());
                 var filename = "";
-                if (imageFile.ContentLength > 0)
+                var ok = "";
+                if (imageFile != null && imageFile.ContentLength > 0)
                 {
                     filename = imageFile.FileName;
-                    filename = (DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + filename).ToString();                  
-                }
-                // Path upload
-                string path = Path.Combine(Server.MapPath("~/Assets/Upload/Avartar"),
-                                       Path.GetFileName(filename));
-                // path save db
-                var strPath = "Assets/Upload/Avartar/";
-                var ok = strPath + filename;
+                    filename = (DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + filename).ToString();
+                    // Path upload
+                    string path = Path.Combine(Server.MapPath("~/Assets/Upload/Avartar"),
+                                           Path.GetFileName(filename));
+                    //Move ava to folder
+                    imageFile.SaveAs(path);
+                    // path save db
+                    var strPath = "Assets/Upload/Avartar/";
+                    ok = strPath + filename;
+                }                                      
                 dao.UpdateProfile(user, fullname, email, phone, ok);
-                //Move ava to folder
-                imageFile.SaveAs(path);
+               
                 Session["FullName"] = user.fullname;
-                return View(user);
+                TempData["OK"] = "Update user successful!!";
+                return RedirectToAction("Profile");
             }
             return RedirectToAction("Index", "Login");
         }
