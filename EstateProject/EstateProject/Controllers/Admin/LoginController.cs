@@ -16,6 +16,10 @@ namespace EstateProject.Controllers.Admin
         // GET: Login
         public ActionResult Index()
         {
+            if(Session["UserName"] != null)
+            {
+                return RedirectToAction("Index", "Admin");
+            }
             return View();
         }
 
@@ -41,7 +45,7 @@ namespace EstateProject.Controllers.Admin
 
                     Session.Add(CommonConstants.USER_SESSION,userSession);
 
-                    return RedirectToAction("Index", "Admin");
+                    return RedirectToAction("Index", "Admin");                
 
                 }else if(result == 0)
                 {
