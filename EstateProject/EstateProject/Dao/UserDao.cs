@@ -31,13 +31,18 @@ namespace EstateProject.Dao
             dbContext.SaveChanges();
         }
 
-        public void UpdateProfile(user entity, string fullname,string email,string phone, string image)
+        public void UpdateProfile(user entity, string fullname,string email,string phone, string path)
         {
             //dbContext.users.Update(entity);
             entity.fullname = fullname;
             entity.email = email;
             entity.phone = phone;
-            entity.image = image;
+            if(path != "")
+            {
+                entity.image = path;
+            }
+            
+          
             dbContext.SaveChanges();
         }
 

@@ -30,26 +30,28 @@ namespace EstateProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult profile(user users)
+        public ActionResult profile(string fullname, string email, string phone, HttpPostedFileBase imageFile)
         {
             if (Session["UserName"] != null)
-            {
-                var path = "/Assets/Upload/Avartar/";
-                var dao = new UserDao();
+            {             
+                var dao = new UserDao();                
                 var user = dao.GetById(Session["UserName"].ToString());
-              
+                var filename = "";
+                if (imageFile.ContentLength > 0)
+                {
+                    filename = imageFile.FileName;
+                    filename = (DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + filename).ToString();                  
+                }
+                // Path upload
+                string path = Path.Combine(Server.MapPath("~/Assets/Upload/Avartar"),
+                                       Path.GetFileName(filename));
+                // path save db
+                var strPath = "Assets/Upload/Avartar/";
+                var ok = strPath + filename;
+                dao.UpdateProfile(user, fullname, email, phone, ok);
+                //Move ava to folder
+                imageFile.SaveAs(path);
                 Session["FullName"] = user.fullname;
-                //Use Namespace called :  System.IO  
-                string FileName = Path.GetFileNameWithoutExtension(users.imageFile.FileName);                           
-                //To Get File Extension  
-                string FileExtension = Path.GetExtension(users.imageFile.FileName);
-                //Add Current Date To Attached File Name  
-                FileName = DateTime.Now.ToString("yyyyMMdd") + "-" + FileName.Trim() + FileExtension;
-
-                users.image = path + FileName;
-                users.imageFile.SaveAs(users.image);
-
-                dao.UpdateProfile(user,users.fullname,users.email,users.phone,users.image);
                 return View(user);
             }
             return RedirectToAction("Index", "Login");

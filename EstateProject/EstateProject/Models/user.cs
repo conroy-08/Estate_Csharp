@@ -18,11 +18,6 @@ namespace EstateProject.Models
         }
 
 
-        public HttpPostedFileBase imageFile { get; set; }
-
-        [StringLength(255)]
-        public string image { get; set; }
-
         public int id { get; set; }
 
         [Required]
@@ -57,6 +52,10 @@ namespace EstateProject.Models
 
         [StringLength(255)]
         public string modifiedby { get; set; }
+
+        [StringLength(255)]
+        public string image { get; set; }
+     
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<assignmentbuilding> assignmentbuildings { get; set; }

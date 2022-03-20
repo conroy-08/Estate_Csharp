@@ -20,7 +20,7 @@ namespace EstateProject.Controllers.Admin
 
             base.OnActionExecuted(filterContext);
 
-            var path = 'Assets/Upload/Avartar/';
+          
         }
     }
 }
