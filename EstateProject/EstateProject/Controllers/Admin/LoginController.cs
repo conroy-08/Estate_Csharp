@@ -46,7 +46,7 @@ namespace EstateProject.Controllers.Admin
 
                     Session.Add(CommonConstants.USER_SESSION,userSession);
 
-                    return RedirectToAction("Index", "Admin");                
+                    return RedirectToAction("Index", "Admin");
 
                 }else if(result == 0)
                 {

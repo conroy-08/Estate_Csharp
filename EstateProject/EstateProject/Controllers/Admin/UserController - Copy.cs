@@ -13,10 +13,22 @@ namespace EstateProject.Controllers
 {
     public class UserController : BaseController
     {
+
         public ActionResult ListUser()
         {
-            return View();
+            if (Session["Role"] != null)
+            {
+                if (Session["Role"].ToString() == "ADMIN")
+                {
+                    var dao = new UserDao();
+                    var data = dao.GetUser();
+                    return View(data);
+                }
+            }
+            Response.StatusCode = 404;
+            return null;
         }
+
 
         public ActionResult Profile()
         {
@@ -93,11 +105,49 @@ namespace EstateProject.Controllers
             }
 
         }  
+        [HttpGet]
         public ActionResult EditUser()
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult EditUser(user user)
+        {
+            if (Session["Role"] != null)
+            {
+                if (Session["Role"].ToString() == "ADMIN")
+                {
+                    if (ModelState.IsValid)
+                    {
+                        var dao = new UserDao();
+                        user.status = (user.status != null) ? user.status : 0;
+                        user.password = Encrytor.MD5Hash(user.password);
+                        if(dao.Insert(user) == 1)
+                        {
+                            TempData["OK"] = "Add new user successfull!!";
+                            return RedirectToAction("EditUser");
+                        }
+                        ModelState.AddModelError("", "Username already exist");
+                        return View("EditUser");
+                    }
+                }
+            }
+            return RedirectToAction("Index", "Login");
+        }
+        [HttpDelete]
+        public JsonResult DeleteUser(int[] data)
+        {
+            if (data != null && data.Length > 0)
+            {
+                for (int i = 0; i < data.Length; i++)
+                {
+                    var dao = new UserDao();
+                    dao.DeleteUser(data[i]);
+                }
+                return Json(new { data = data, Status = 1 }, JsonRequestBehavior.AllowGet);
+            }
 
-
+            return Json(new { Status = 0 }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

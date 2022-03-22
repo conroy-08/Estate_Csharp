@@ -8,7 +8,12 @@
     if (TempData["OK"] != null)
     {
     <script type="text/javascript">
-            swal("Successful!!", "@((string)TempData["OK"])", "success");
+        Swal.fire(
+            'Successful!!',
+            "@((string)TempData["OK"])",
+            "success"
+        )
+        
     </script>
     }
 }
@@ -61,7 +66,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" for="thumbnail">Ảnh đại diện</label>
                             <div class="col-sm-4">
-                                <input style="margin-top: 6px;" type="file" id="imageFile" name="imageFile" accept="image/png, image/jpeg, image/jpg" placeholder="thumbnail">
+                                <input style="margin-top: 6px;" type="file" id="imageFile" name="imageFile" @*accept="image/png, image/jpeg, image/jpg"*@ placeholder="thumbnail">
                             </div>
                             <div class="col-sm-5">
                                 @{
