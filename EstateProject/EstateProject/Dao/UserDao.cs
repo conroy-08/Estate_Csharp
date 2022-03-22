@@ -19,10 +19,14 @@ namespace EstateProject.Dao
 
         public long Insert(user entity)
         {
+            
+            var checkusername = dbContext.users.SingleOrDefault(x => x.username == entity.username);
+
+            if (checkusername != null)
+                return 0;
             dbContext.users.Add(entity);
             dbContext.SaveChanges();
-
-            return entity.id;
+            return 1;
         }
         public void Update(user entity, string newPassword)
         {
@@ -78,6 +82,21 @@ namespace EstateProject.Dao
             }
 
         }
+        public List<user> GetUser()
+        {
+            return dbContext.users.Select(x => x).ToList();
+        } 
 
+        public bool DeleteUser(int id)
+        {
+            var d = dbContext.users.FirstOrDefault(x => x.id == id);
+            if (d != null)
+            {
+                dbContext.users.Remove(d);
+                dbContext.SaveChanges();
+                return true;
+            }
+            return false;
+        }
     }
 }

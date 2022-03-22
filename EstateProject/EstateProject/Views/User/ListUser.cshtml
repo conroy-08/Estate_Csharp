@@ -1,4 +1,5 @@
-﻿
+﻿@model List<EstateProject.Models.user>
+
 @{
     ViewBag.Title = "Danh sách tài khoản";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,10 +7,10 @@
 <div class="main-content-inner">
     <div class="breadcrumbs" id="breadcrumbs">
         <script type="text/javascript">
-                    try {
-                        ace.settings.check('breadcrumbs', 'fixed')
-                    } catch (e) {
-                    }
+            try {
+                ace.settings.check('breadcrumbs', 'fixed')
+            } catch (e) {
+            }
         </script>
 
         <ul class="breadcrumb">
@@ -82,7 +83,7 @@
                         <div class="table-btn-controls">
                             <div class="pull-right tableTools-container">
                                 <div class="dt-buttons btn-overlap btn-group">
-                                    <a flag="info" href="edit.html"
+                                    <a flag="info" href="@Url.Action("EditUser", "User")"
                                        class="dt-button buttons-colvis btn btn-white btn-primary btn-bold"
                                        data-toggle="tooltip"
                                        title="Thêm người dùng"
@@ -91,7 +92,7 @@
                                             <i class="fa fa-plus-circle bigger-110 purple"></i>
                                         </span>
                                     </a>
-                                    <button id="btnDelete" type="button" disabled
+                                    <button id="btnDelete" type="button"
                                             class="dt-button buttons-html5 btn btn-white btn-primary btn-bold"
                                             data-toggle="tooltip"
                                             title="Xóa bài viết" onclick="warningBeforeDeleteUser()">
@@ -114,38 +115,48 @@
                                 <thead>
                                     <tr style="font-family: VnBlack ; font-weight: bold; color: #000000;">
                                         <th><input type="checkbox" id="checkAll" value="#" /></th>
-                                        <th>Tên  </th>
+                                        <th>Tên đăng nhập </th>
                                         <th>Tên đầy đủ</th>
-                                        <th>Thao tác</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        @*<th>Thao tác</th>*@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td> <input type="checkbox" id="checkbox0" /></td>
-                                        <td> userName</td>
-                                        <td> fullName</td>
-                                        <td>
-                                            <a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
-                                               title="Cập nhật người dùng"
-                                               href="#">
-                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                            </a>
+                                    @{
+                                        foreach (var item in Model)
+                                        {
+                                            <tr data-id="@item.id" class="id_user">
+                                                <td>
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> <input type="checkbox" id="checkbox1" /></td>
-                                        <td> userName</td>
-                                        <td> fullName</td>
-                                        <td>
-                                            <a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
-                                               title="Cập nhật người dùng"
-                                               href="#">
-                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                            </a>
+                                                    @{
+                                                        if (item.role != "ADMIN" && item.id != int.Parse(Session["UserId"].ToString()))
+                                                        {
+                                                            <input type="checkbox" id="checkbox0" />
+                                                        }
+                                                    }
+                                                </td>
+                                                <td> @item.username</td>
+                                                <td> @item.fullname</td>
+                                                <td> @item.phone</td>
+                                                <td> @item.email</td>
+                                                <td> @item.role</td>
+                                                @*<td>
+                                                        @{
+                                                            if (item.role != "ADMIN" && item.id != int.Parse(Session["UserId"].ToString()))
+                                                            { <a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
+                                                                 title="Cập nhật người dùng"
+                                                                 href="#">
+                                                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                                </a>
+                                                            }
+                                                        }
 
-                                        </td>
-                                    </tr>
+                                                    </td>*@
+                                            </tr>
+                                        }
+                                    }
                                 </tbody>
                             </table> <!-- table-->
                             <ul class="pagination" id="pagination"></ul>
@@ -156,4 +167,41 @@
         </div>
     </div>
 </div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            
+            $("#btnDelete").click(function () {
+                var arr = [];
+                $('input:checked').each(function () {
+                    console.log(this.closest('.id_user').getAttribute('data-id'));
+                    arr.push(this.closest('.id_user').getAttribute('data-id'));
+                });
+                $.ajax({
+                    url: '@Url.Action("DeleteUser","User")', //
+                    type: 'delete',
+                    data: { 'data': arr },
+                    success: function (response) {
+                        console.log(response);
+                        if (response.Status == 1) {
+                            var data = response.data;
+                            for (var i = 0; i < data.length; i++) {
+                                $(`tr[data-id=${data[i]}]`).remove();
+                            }
+                        }
+                    },
+                    error: function (response) {
+                        console.log(response);
+
+
+                    }
+                });
+            })           
+        });
+    </script>
+
+    }
+
+
 
