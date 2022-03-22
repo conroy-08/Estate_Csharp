@@ -18,6 +18,7 @@ namespace EstateProject.Controllers.Admin
         {
             if(Session["UserName"] != null)
             {
+                // return View("~/Views/Admin/Index.cshtml");
                 return RedirectToAction("Index", "Admin");
             }
             return View();

@@ -9,6 +9,7 @@ namespace EstateProject.Controllers
 {
     public class AdminController : BaseController
     {
+        [Route("admin")]
         public ActionResult Index()
         {
             return View();

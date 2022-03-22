@@ -15,6 +15,12 @@
     <script src="//cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
     @Scripts.Render("~/js/base")
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    @{ 
+        var baseurl = Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port + Url.Content("~");
+    }
+    <script>
+        var baseurl = "@baseurl";
+    </script>
     <style>
         .form-horizontal {
             font-family: VnBlack;
@@ -112,7 +118,7 @@
                 ace.settings.check('main-container', 'fixed')
             } catch (e) {
             }
-        </script>
+</script>
         <!-- menu -->
         <div id="sidebar" class="sidebar  responsive  ace-save-state">
             <script type="text/javascript">
@@ -293,6 +299,11 @@
   
 
     @Scripts.Render("~/js/plugins")
+    <script>
+        $('.back').click(function () {
+            window.location = baseurl;
+        });
+    </script>
 
     @RenderSection("scripts", required: false)
 </body>
