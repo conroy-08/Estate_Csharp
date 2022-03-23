@@ -14,19 +14,17 @@ using System.Web.Mvc;
 
 namespace EstateProject.Controllers
 {
-    public class BuildingController : Controller
+    public class BuildingController : BaseController
     {
         EstateDbContext db = new EstateDbContext();
 
        
-        [HttpGet]
+   
         public ActionResult ListBuilding(BuildingSearchDto building)
         {
 
-
             var dao = new BuildingDao();
             var data = dao.findAll(building);
-           
             return View(data);
 
 
@@ -37,9 +35,16 @@ namespace EstateProject.Controllers
             return View();
         }
 
-        public ActionResult DetailBuilding()
+        public ActionResult DetailBuilding(int? id)
         {
-            return View();
+            var building = new BuildingDao().findById(id);
+            if (building == null)
+            {
+                return HttpNotFound();
+            }
+            BuildingDto buildingDto = BuildingConverter.converterToDto(building);
+
+            return View(buildingDto);
         }
 
         public ActionResult EditBuilding(int? id )
@@ -55,12 +60,29 @@ namespace EstateProject.Controllers
                         return HttpNotFound();
                 }
                 BuildingDto buildingDto = BuildingConverter.converterToDto(building);
-
+                
                 return View(buildingDto);
            
         }
 
-   
+
+
+        [HttpGet]
+        public JsonResult getAll()
+        {
+            try
+            {
+             
+                var data = db.buildings.ToList();
+                
+                return Json(new { data = data }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
         [HttpPost]
@@ -68,10 +90,17 @@ namespace EstateProject.Controllers
         {
             try
             {
-                var dao = new BuildingDao();
-                dao.save(building);
-
-                return Json(new { status = true });
+                bool status = false;
+                if (Session["Role"] != null)
+                {
+                    if (Session["Role"].ToString() == "ADMIN")
+                    {
+                        var dao = new BuildingDao();
+                        dao.save(building);
+                        status = true;
+                    }
+                }
+                return Json(new { status = status });
             }
             catch (Exception e)
             {
@@ -85,11 +114,20 @@ namespace EstateProject.Controllers
         {
             try
             {
-                var dao = new BuildingDao();
+                bool status = false;
+                if (Session["Role"] != null)
+                {
+
+                        
+                        var dao = new BuildingDao();
+
+                        dao.Update(building.id, building);
+                       status = true;
+
+                }
+              
                 
-                dao.Update(building.id, building);
-                
-                return Json(new { status = true , id = building.id });
+                return Json(new { status = status, id = building.id });
                 
             }
             catch (Exception e)
@@ -104,9 +142,18 @@ namespace EstateProject.Controllers
         {
             try
             {
-                var dao = new BuildingDao();
-                dao.delete(ids);
+                bool status = false;
+                if (Session["Role"] != null)
+                {
+                    if (Session["Role"].ToString() == "ADMIN")
+                    {
+                        var dao = new BuildingDao();
+                        dao.delete(ids);
 
+                        status = true;
+                    }
+                }
+               
                 return Json(new { status = true });
             }
             catch (Exception e)
@@ -127,10 +174,7 @@ namespace EstateProject.Controllers
 
                 if (file != null)
                 {
-                    /*        var fileName = Path.GetFileName(file.FileName);
-                            var extention = Path.GetExtension(file.FileName);
-                            var fileNameWithoutExtention = Path.GetFileNameWithoutExtension(file.FileName);*/
-
+                  
                     file.SaveAs(Server.MapPath("~/Assets/Upload/Building/" + file.FileName));
 
                 }

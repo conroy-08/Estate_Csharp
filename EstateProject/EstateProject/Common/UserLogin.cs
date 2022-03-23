@@ -10,5 +10,6 @@ namespace EstateProject.Common
     {
         public long UserId { get; set; }
         public String UserName { get; set; }
+        public String role{get; set;}
     }
 }

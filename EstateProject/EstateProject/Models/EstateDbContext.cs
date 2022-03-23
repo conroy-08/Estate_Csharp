@@ -221,6 +221,11 @@ namespace EstateProject.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<user>()
+              .Property(e => e.image)
+              .IsUnicode(false);
+
+
+            modelBuilder.Entity<user>()
                 .Property(e => e.createdby)
                 .IsUnicode(false);
 

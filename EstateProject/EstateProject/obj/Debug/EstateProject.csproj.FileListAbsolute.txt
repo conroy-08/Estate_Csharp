@@ -86,3 +86,6 @@ E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\obj\Debug
 E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\obj\Debug\EstateProject.dll
 E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\obj\Debug\EstateProject.pdb
 E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\obj\Debug\EstateProject.csproj.AssemblyReference.cache
+E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\bin\roslyn\System.Buffers.dll
+E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\bin\roslyn\System.Memory.dll
+E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\bin\roslyn\System.Numerics.Vectors.dll

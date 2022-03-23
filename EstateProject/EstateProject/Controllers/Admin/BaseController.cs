@@ -19,6 +19,8 @@ namespace EstateProject.Controllers.Admin
             }
 
             base.OnActionExecuted(filterContext);
+
+          
         }
     }
 }

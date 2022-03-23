@@ -167,6 +167,7 @@
     <Compile Include="Models\customer.cs" />
     <Compile Include="Models\EstateDbContext.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\PasswordModel.cs" />
     <Compile Include="Models\rentarea.cs" />
     <Compile Include="Models\transaction.cs" />
     <Compile Include="Models\user.cs" />

@@ -45,7 +45,7 @@
                         </div>
                     </div> <!-- widget-header -->
                     <!-- search Buidling -->
-                    <form id="listFormBuilding" method="GET" action="@Url.Action("ListBuilding", "Building")" >
+                    <form id="listFormBuilding" method="GET" action="@Url.Action("ListBuilding", "Building")">
                         <div class="widget-body ">
                             <div class="widget-main">
                                 <div class="form-horizontal">
@@ -156,23 +156,31 @@
                 </div> <!-- widget-box -->
                 <div class="table-btn-controls">
 
-                    <div class="pull-right tableTools-container" style=" margin-top: 8px;">
-                        <div class="dt-buttons btn-overlap btn-group">
-                            <a flag="info" href="@Url.Action("EditBuilding", "Building")"
-                               class="dt-button buttons-colvis btn btn-white btn-primary btn-bold" data-toggle="tooltip"
-                               title='Thêm bài viết'>
-                                <span>
-                                    <i class="fa fa-plus-circle bigger-110 purple"></i>
-                                </span>
-                            </a>
-                            <button id="btnDelete" type="button" style="margin-left: 6px;" disabled
-                                    class="dt-button buttons-html5 btn btn-white btn-primary btn-bold" onclick="warningBeforeDelete()" data-toggle="tooltip" title='Xóa bài viết'>
-                                <span>
-                                    <i class="fa fa-trash-o bigger-110 pink"></i>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
+
+                    @{if (Session["Role"].Equals("ADMIN"))
+                        {
+                            <div class="pull-right tableTools-container" style=" margin-top: 8px;">
+                                <div class="dt-buttons btn-overlap btn-group">
+                                    <a flag="info" href="@Url.Action("EditBuilding", "Building")"
+                                       class="dt-button buttons-colvis btn btn-white btn-primary btn-bold" data-toggle="tooltip"
+                                       title='Thêm bài viết'>
+                                        <span>
+                                            <i class="fa fa-plus-circle bigger-110 purple"></i>
+                                        </span>
+                                    </a>
+                                    <button id="btnDelete" type="button" style="margin-left: 6px;" disabled
+                                            class="dt-button buttons-html5 btn btn-white btn-primary btn-bold" onclick="warningBeforeDelete()" data-toggle="tooltip" title='Xóa bài viết'>
+                                        <span>
+                                            <i class="fa fa-trash-o bigger-110 pink"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+
+                        }
+
+                    }
+
                 </div>  <!-- delete and create-->
                 <br />
 
@@ -215,21 +223,26 @@
                                                         <td> @item.servicefee</td>
                                                         <td> @item.brokeragetee</td>
                                                         <td>
-                                                             <button class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom"
-                                                                        title="Giao tòa nhà cho nhân viên" onclick="assignmentBuilding()"> 
-                                                                                        <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                                                        </button>
-                        
-                                                              <a class="btn btn-xs btn-primary " data-toggle="tooltip" title="Cập nhật bài viết"
-                                                                 href= "/Building/EditBuilding/@item.id" > 
-                                                               <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a >
-                            
-                                                               <a class="btn btn-xs btn-primary " data-toggle="tooltip" title="Thông tin tòa nhà " >
-                                                                     <i class="fa fa-eye" aria-hidden="true"></i></a >
-                            
-                                                                 <a class="btn btn-xs btn-primary " data-toggle="tooltip"  title="Thêm vào danh sách ưu tiên " >
-                                                            <i class="fa fa-plus" aria-hidden="true"></i></a >
-                                                         </td>
+                                                            <button class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom"
+                                                                    title="Giao tòa nhà cho nhân viên" onclick="assignmentBuilding()">
+                                                                <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                                            </button>
+
+                                                            <a class="btn btn-xs btn-primary " data-toggle="tooltip" title="Cập nhật bài viết"
+                                                               href="/Building/EditBuilding/@item.id">
+                                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                            </a>
+
+                                                            <a class="btn btn-xs btn-primary " data-toggle="tooltip" title="Thông tin tòa nhà "
+                                                               href="/Building/DetailBuilding/@item.id">
+                                                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                                            </a>
+
+                                                            <a class="btn btn-xs btn-primary " data-toggle="tooltip" title="Thêm vào danh sách ưu tiên ">
+
+                                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                                            </a>
+                                                        </td>
 
                                                     </tr>
                                                 }
@@ -262,7 +275,11 @@
 
         var homeConfig = { pageSize: 5, pageIndex: 1 }
 
-        
+        /* search */
+        $('#btnSearch').click(function (e) {
+            e.preventDefault();
+            $('#listFormBuilding').submit();
+        })
 
 
         /* delete */
@@ -273,8 +290,6 @@
                 let dataArray = $('tbody input[type=checkbox]:checked').map(function () {
                     return $(this).val();
                 }).get();
-
-
                 deleteBuilder(dataArray);
             });
         }
@@ -314,22 +329,6 @@
 *@
 
 
-        /* assignment building */
-
-        function assignmentBuilding() {
-
-
-            openModelAssignmentBuilding();
-        }
-        function openModelAssignmentBuilding() {
-            $('#assignmentBuildingModal').modal();
-        }
-
-        /* search */
-        $('#btnSearch').click(function (e) {
-            e.preventDefault();
-            $('#listFormBuilding').submit();
-        })
 
 
 

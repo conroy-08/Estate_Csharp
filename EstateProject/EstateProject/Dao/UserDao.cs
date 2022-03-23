@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using EstateProject.Common;
 using EstateProject.Models;
 
 namespace EstateProject.Dao
@@ -16,13 +17,37 @@ namespace EstateProject.Dao
             dbContext = new EstateDbContext();
         }
 
-
         public long Insert(user entity)
         {
+            
+            var checkusername = dbContext.users.SingleOrDefault(x => x.username == entity.username);
+
+            if (checkusername != null)
+                return 0;
             dbContext.users.Add(entity);
             dbContext.SaveChanges();
+            return 1;
+        }
+        public void Update(user entity, string newPassword)
+        {
+            //dbContext.users.Update(entity);
+            entity.password = Encrytor.MD5Hash(newPassword);
+            dbContext.SaveChanges();
+        }
 
-            return entity.id;
+        public void UpdateProfile(user entity, string fullname,string email,string phone, string path)
+        {
+            //dbContext.users.Update(entity);
+            entity.fullname = fullname;
+            entity.email = email;
+            entity.phone = phone;
+            if(path != "")
+            {
+                entity.image = path;
+            }
+            
+          
+            dbContext.SaveChanges();
         }
 
         public user GetById(String userName)
@@ -57,6 +82,26 @@ namespace EstateProject.Dao
             }
 
         }
+        public List<user> GetUser(string search)
+        {
+            if(search != null)
+            {
+                search = search.Trim();
+                return dbContext.users.Where(x => x.username.Contains(search)).ToList();
+            }
+            return dbContext.users.Select(x => x).ToList();
+        } 
 
+        public bool DeleteUser(int id)
+        {
+            var d = dbContext.users.FirstOrDefault(x => x.id == id);
+            if (d != null)
+            {
+                dbContext.users.Remove(d);
+                dbContext.SaveChanges();
+                return true;
+            }
+            return false;
+        }
     }
 }

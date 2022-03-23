@@ -8,11 +8,11 @@
 <div class="main-content-inner">
     <div class="breadcrumbs" id="breadcrumbs">
         <script type="text/javascript">
-            try {
-                ace.settings.check('breadcrumbs', 'fixed')
-            } catch (e) {
-            }
-        </script>
+
+
+            try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
+ 
+</script>
         <ul class="breadcrumb">
             <li>
                 <i class="ace-icon fa fa-home home-icon"></i>
@@ -215,36 +215,36 @@
                         </div>
                     </div>
 
-                
+
                     <div class="form-group">
-                      
-                            <label class="col-sm-3 control-label no-padding-right">Ảnh mở rộng</label>
-                            <div class="col-sm-3">
 
-                                <input type="file" name="Image" id="image" multiple class="d-none" onchange="image_select()" accept="image/png, image/jpeg, image/jpg">
-                               
-                            </div>
-                            <div class="col-sm-6" id="muttipleUploadFile">
-                                @{
-                                    var baseUrl = Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port + Url.Content("~/Assets/Upload/Building/");
-                                    var urlImages = "";
-                                    if (Model.buildingImages != null)
+                        <label class="col-sm-3 control-label no-padding-right">Ảnh mở rộng</label>
+                        <div class="col-sm-3">
+
+                            <input type="file" name="Image" id="image" multiple class="d-none" onchange="image_select()" accept="image/png, image/jpeg, image/jpg">
+
+                        </div>
+                        <div class="col-sm-6" id="muttipleUploadFile">
+                            @{
+                                var baseUrl = Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port + Url.Content("~/Assets/Upload/Building/");
+                                var urlImages = "";
+                                if (Model.buildingImages != null)
+                                {
+
+                                    for (var item = 0; item < Model.buildingImages.Length; item++)
                                     {
+                                        var ok = Model.buildingImages[item];
+                                        urlImages = baseUrl + ok;
 
-                                        for (var item = 0; item < Model.buildingImages.Length; item++)
-                                        {
-                                            var ok = Model.buildingImages[item];
-                                            urlImages = baseUrl + ok;
-
-                                            <div class="image_container col-sm-3 position-relative">
-                                                <img src="@urlImages" alt="Image">
-                                                <span class="position-absolute" onclick="delete_image(@item)">&times;</span>
-                                            </div>
-                                            }
-                                        }
+                                        <div class="image_container col-sm-3 position-relative">
+                                            <img src="@urlImages" alt="Image">
+                                            <span class="position-absolute" onclick="@item">&times;</span>
+                                        </div>
+                                    }
                                 }
-                            </div>
-                        
+                            }
+                        </div>
+
                     </div>
 
 
@@ -283,7 +283,7 @@
                         </div>
                     </div>
                 </form>
-        </div>
+            </div>
         </div>
     </div>
 </div>
@@ -292,9 +292,16 @@
 @section scripts {
     <script type="text/javascript">
 
+
         
+        var x = '@baseUrl';
+
+
+
+        var oldFileNameBuilding = '@Model.avatar';
 
         var images = [];
+
 
 
 
@@ -334,7 +341,7 @@
             return image;
         }
 
-         function get_image_data() {
+        function get_image_data() {
             var form = new FormData()
             for (let index = 0; index < images.length; index++) {
                 form.append("file[" + index + "]", images[index]['file']);
@@ -365,89 +372,6 @@
         }
 
 
-
-
-
-        /* Add building */
-
-
-       @* jQuery.extend(jQuery.validator.messages, {
-            required: "Không được bỏ trống trường này.",
-            remote: "Please fix this field.",
-            email: "Please enter a valid email address.",
-            url: "Please enter a valid URL.",
-            date: "Please enter a valid date.",
-            dateISO: "Please enter a valid date (ISO).",
-            number: "Vui lòng nhập số vào trường này.",
-            digits: "Vui lòng nhập số nguyên vào trường này.",
-            equalTo: "Please enter the same value again.",
-            accept: "Please enter a value with a valid extension.",
-            maxlength: jQuery.validator.format("Please enter no more than {0} characters."),
-            minlength: jQuery.validator.format("Please enter at least {0} characters."),
-            range: jQuery.validator.format("Please enter a value between {0} and {1}."),
-            max: jQuery.validator.format("Please enter a value less than or equal to {0}."),
-            min: jQuery.validator.format("Vui lòng nhập giá trị lớn hơn giá trị {0} .")
-        });
-
-        $('#formSubmit').validate({
-            rules: {
-                name: "required",
-                ward: "required",
-                street: "required",
-                district: "required",
-                numberofbasement: {
-                    required: true,
-                    digits: true,
-                    min: true
-                },
-                buildingarea: {
-                    required: true,
-                    number: true,
-                    min: true
-                },
-                rentArea: "required",
-                rentPrice: {
-                    required: true,
-                    number: true,
-                    min: true
-                },
-                buildingTypes: {
-                    required: true,
-                    minlength: 1
-                }
-
-
-            },
-            messages: {
-                name: "Vui lòng nhập tên của tòa nhà.",
-                ward: "Vui lòng nhập địa chỉ phường của tòa nhà. ",
-                street: "Vui lòng nhập địa chỉ đường của tòa nhà. ",
-                district: "Vui lòng nhập quận của tòa nhà.",
-                numberOfBasement: {
-                    required: "Vui lòng nhập số tầng hầm của tòa nhà.",
-                    digits: "Vui lòng nhập số nguyên vào trường này.",
-                    min: "Vui lòng nhập giá trị lớn hơn giá trị lớn hơn hoặc bằng 0 ."
-                },
-                buildingArea: {
-                    required: "Vui lòng nhập diện tích của tòa nhà.",
-                    number: "Vui lòng nhập số vào trường này.",
-                    min: "Vui lòng nhập giá trị lớn hơn giá trị lớn hơn hoặc bằng 0 ."
-                },
-                rentArea: "Vui lòng nhập diện tích thuê của tòa nhà.",
-                rentPrice: {
-                    required: "Vui lòng nhập giá thuê của tòa nhà.",
-                    number: "Vui lòng nhập số vào trường này.",
-                    min: "Vui lòng nhập giá trị lớn hơn giá trị lớn hơn hoặc bằng 0 ."
-                },
-                buildingTypes: {
-                    required: "Vui lòng lựa chọn loại của tòa nhà.",
-                    minlength: 1
-                }
-            }
-
-        })
-         *@
-
         let fileName;
         let dataFiles;
         let dataMultiple;
@@ -460,8 +384,13 @@
             showAlertBeforeAdd(function () {
                 event.preventDefault();
                 let dataAdd = dataBuilding();
-                uploadFile(dataFiles);
-                uploadMultipeFiles(dataMultiple);
+                if (dataFiles != null) {
+                    uploadFile(dataFiles);
+                }
+                if (images.length>0) {
+                    uploadMultipeFiles(dataMultiple);
+                }
+
                 addBuilding(dataAdd);
 
             })
@@ -479,12 +408,24 @@
                     data["" + v.name + ""] = v.value;
                 }
             })
-            
+
+            if (fileName == null) {
+                if (oldFileNameBuilding != null) {
+                    data['avatar'] = oldFileNameBuilding;
+                } else {
+                    data['avatar'] = fileName;
+                }
+            } else {
+                data['avatar'] = fileName;
+            }
+
+
+
             $.each(images, function (i, v) {
                 buildingImages.push(v.name);
             })
 
-            data['avatar'] = fileName;
+
             data['buildingImages'] = buildingImages;
             data['buildingTypes'] = buildingTypes;
             return data;
@@ -526,7 +467,12 @@
                 let dataEdit = dataBuilding();
                 let idOfBuilding = $('#buildlingId').val();
                 dataEdit['id'] = idOfBuilding;
-                uploadFile(dataFiles);
+                if (dataFiles != null) {
+                    uploadFile(dataFiles);
+                }
+                if (images.length > 0) {
+                    uploadMultipeFiles(dataMultiple);
+                }
                 updateBuilding(dataEdit);
 
             })
