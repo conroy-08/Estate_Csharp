@@ -82,8 +82,13 @@ namespace EstateProject.Dao
             }
 
         }
-        public List<user> GetUser()
+        public List<user> GetUser(string search)
         {
+            if(search != null)
+            {
+                search = search.Trim();
+                return dbContext.users.Where(x => x.username.Contains(search)).ToList();
+            }
             return dbContext.users.Select(x => x).ToList();
         } 
 

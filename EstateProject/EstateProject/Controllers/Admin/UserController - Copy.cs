@@ -12,16 +12,21 @@ using EstateProject.Models;
 namespace EstateProject.Controllers
 {
     public class UserController : BaseController
-    {
-
-        public ActionResult ListUser()
+    {    
+        [HttpGet]
+        public ActionResult ListUser(string search)
         {
             if (Session["Role"] != null)
             {
                 if (Session["Role"].ToString() == "ADMIN")
-                {
-                    var dao = new UserDao();
-                    var data = dao.GetUser();
+                {                  
+                    var dao = new UserDao();                                
+                    var data = dao.GetUser(search);
+                    if(search!= null)
+                    {
+                        ViewBag.Search = search.Trim();
+                    }
+                   
                     return View(data);
                 }
             }
