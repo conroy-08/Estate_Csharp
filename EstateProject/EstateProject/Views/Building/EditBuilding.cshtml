@@ -1,4 +1,5 @@
-﻿
+﻿@model EstateProject.Dto.BuildingDto
+
 @{
     ViewBag.Title = "ChinhSuaToaNha";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,10 +8,10 @@
 <div class="main-content-inner">
     <div class="breadcrumbs" id="breadcrumbs">
         <script type="text/javascript">
-                    try {
-                        ace.settings.check('breadcrumbs', 'fixed')
-                    } catch (e) {
-                    }
+            try {
+                ace.settings.check('breadcrumbs', 'fixed')
+            } catch (e) {
+            }
         </script>
         <ul class="breadcrumb">
             <li>
@@ -30,14 +31,12 @@
     <div class="page-content">
         <div class="row">
             <div class="col-xs-12">
-                <div id="message" style="display: none">
 
-                </div>
-                <form class="form-horizontal" role="form" id="formSubmit">
+                <form class="form-horizontal" role="form" id="formSubmit" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="name" class="col-sm-3 control-label no-padding-right">Tên tòa nhà :</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="name" />
+                            <input type="text" class="form-control" id="name" name="name" value="@Model.name" />
                         </div>
 
                     </div>
@@ -53,144 +52,141 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="ward">Phường :</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="ward" />
+                            <input type="text" class="form-control" id="ward" name="ward" value="@Model.ward" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="street">Đường :</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="street" />
+                            <input type="text" class="form-control" id="street" name="street" value="@Model.street" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="structure">Kết cấu :</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="structure" />
+                            <input type="text" class="form-control" id="structure" name="structure" value="@Model.structure" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="numberOfBasement">Số tầng hầm :</label>
                         <div class="col-sm-7">
-                            <input type="number" id="numberOfBasement" class="form-control" name="numberOfBasement" min="0" />
+                            <input type="number" id="numberOfBasement" class="form-control" name="numberofbasement" min="0" value="@Model.numberofbasement" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="buildingArea">Diện tích sàn : </label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" min="0" id="buildingArea" />
+                            <input type="text" class="form-control" min="0" id="buildingArea" name="floorarea" value="@Model.floorarea" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="direction">Hướng :</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="direction" />
+                            <input type="text" class="form-control" id="direction" name="direction" value="@Model.direction" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="level">Hạng :</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="level" />
+                            <input type="text" class="form-control" id="level" name="levels" value="@Model.levels" />
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="rentArea">Diện tích thuê  :</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" min="0" id="rentArea" />
+                            <input type="text" class="form-control" min="0" id="rentArea" name="rentareas" value="@Model.rentareas" />
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="descriptionArea">Mô tả diện tích  :</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="descriptionArea" />
+                            <input type="text" class="form-control" id="descriptionArea" name="descriptionarea" />
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="rentPrice">Giá thuê  :</label>
                         <div class="col-sm-7">
-                            <input type="number" id="rentPrice" class="form-control" name="rentPrice" min="0" />
+                            <input type="number" id="rentPrice" class="form-control" name="rentprice" min="0" value="@Model.rentprice" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="rentPriceDescription">Mô tả giá  :</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="rentPriceDescription" />
+                            <input type="text" class="form-control" id="rentPriceDescription" name="rentpricedescription" value="@Model.rentpricedescription" />
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="carCost">Phí ô tô  :</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="carCost" />
-
+                            <input type="text" class="form-control" id="carCost" name="carcost" value="@Model.carfee" />
                         </div>
+
                     </div>
+
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="motorbikeCost">Phí mô tô  :</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="motorbikeCost" />
+                            <input type="text" class="form-control" id="motorbikeCost" name="motorbikecost" value="@Model.motofee" />
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="overtimeCost">Phí ngoài giờ  :</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="overtimeCost" />
+                            <input type="text" class="form-control" id="overtimeCost" name="overtimeCost" value="@Model.overtimefee" />
                         </div>
                     </div>
+
                     <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" for="electricityCost">Tiền điện :</label>
+                        <label class="col-sm-3 control-label no-padding-right" for="electricitycost">Tiền điện :</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="electricityCost" />
+                            <input type="text" class="form-control" id="electricityCost" name="electricitycost" value="@Model.electricityfee" />
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="deposit">Đặt cọc  :</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="deposit" />
+                            <input type="text" class="form-control" id="deposit" name="deposit" value="@Model.deposit" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="payment">Thanh toán  :</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="payment" />
+                            <input type="text" class="form-control" id="payment" name="payment" value="@Model.payment" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="timeRent">Thời hạn thuê :</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" min="0" id="timeRent" />
+                            <input type="text" class="form-control" min="0" id="timeRent" name="timerent" value="@Model.renttime" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="timeDecorator">Thời gian trang trí :</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="timeDecorator" />
+                            <input type="text" class="form-control" id="timeDecorator" name="timedecorator" value="@Model.decorationtime" />
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" for="managerName">Tên quản lý :</label>
-                        <div class="col-sm-7">
-                            <input type="text" class="form-control" id="managerName" />
 
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" for="managerPhone">SĐT quản lý :</label>
-                        <div class="col-sm-7">
-                            <input type="text" class="form-control" id="managerPhone" />
-                        </div>
-                    </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="brokerageFee">Phí mô giới :</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="brokerageFee" />
+                            <input type="text" class="form-control" id="brokerageFee" name="brokeragefee" value="@Model.brokeragetee" />
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right"> Loại tòa nhà :</label>
                         <div class="col-sm-7">
-                            <input type="checkbox" /> <label> Tầng Trệt </label>
-                            <input type="checkbox" /> <label> Nội Thất </label>
-                            <input type="checkbox" /> <label> Nguyên Căn </label>
+
+                            <input type="checkbox" name="buildingTypes" value="TANG_TRET" /> <label> Tầng Trệt </label>
+                            <input type="checkbox" name="buildingTypes" value="NOI_THAT" /> <label> Nội Thất </label>
+                            <input type="checkbox" name="buildingTypes" value="NGUYEN_CAN" /> <label> Nguyên Căn </label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -201,32 +197,85 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" for="thumbnail">Ảnh đại diện</label>
+                        <label class="col-sm-3 control-label no-padding-right">Ảnh đại diện</label>
                         <div class="col-sm-4">
-                            <input style="margin-top: 6px;" type="file" id="thumbnail" accept="image/png, image/jpeg, image/jpg" placeholder="thumbnail">
+                            <input style="margin-top: 6px;" type="file" id="imageFile" name="imageFile" accept="image/png, image/jpeg, image/jpg" placeholder="thumbnail">
                         </div>
                         <div class="col-sm-5">
-                            <img id="fileImage" alt="Ảnh đại diện" style="width: 300px; height: 400px;" />
+                            @{
+                                var baseurl = Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port + Url.Content("~/Assets/Upload/Building/");
+                                var imageSrc = "";
+                                if (Model.avatar != null)
+                                {
+                                    var ok = Model.avatar;
+                                    imageSrc = baseurl + ok;
+                                }
+                            }
+                            <img src="@imageSrc" id="fileImage" alt="Ảnh đại diện" style="width: 300px; height: 320px;" />
                         </div>
-
                     </div>
-                    <input type="hidden" id="buildlingId" />
+
+                
+                    <div class="form-group">
+                      
+                            <label class="col-sm-3 control-label no-padding-right">Ảnh mở rộng</label>
+                            <div class="col-sm-3">
+
+                                <input type="file" name="Image" id="image" multiple class="d-none" onchange="image_select()" accept="image/png, image/jpeg, image/jpg">
+                               
+                            </div>
+                            <div class="col-sm-6" id="muttipleUploadFile">
+                                @{
+                                    var baseUrl = Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port + Url.Content("~/Assets/Upload/Building/");
+                                    var urlImages = "";
+                                    if (Model.buildingImages != null)
+                                    {
+
+                                        for (var item = 0; item < Model.buildingImages.Length; item++)
+                                        {
+                                            var ok = Model.buildingImages[item];
+                                            urlImages = baseUrl + ok;
+
+                                            <div class="image_container col-sm-3 position-relative">
+                                                <img src="@urlImages" alt="Image">
+                                                <span class="position-absolute" onclick="delete_image(@item)">&times;</span>
+                                            </div>
+                                            }
+                                        }
+                                }
+                            </div>
+                        
+                    </div>
+
+
+                    <input type="hidden" id="buildlingId" value="@Model.id" />
                     <div class="clearfix form-actions">
                         <div class="col-md-offset-3 col-md-9">
-                            <!-- If buildingId != null thi show Cap Nhat-->
-                            <!--  <div  >
-                                <button class="btn btn-info" type="button"  id="btnUpdateBuilding" >
-                                    <i class="ace-icon fa fa-check bigger-110"></i>
-                                    Cập nhật tòa nhà
-                                </button>
-                            </div>-->
 
-                            <div>
-                                <button class="btn btn-info" type="button" id="btnAddBuilding">
-                                    <i class="ace-icon fa fa-check bigger-110"></i>
-                                    Thêm tòa nhà
-                                </button>
-                            </div>
+                            @if (@Model.id == 0)
+                            {
+
+
+                                <div>
+                                    <button class="btn btn-info" type="button" id="btnAddBuilding">
+                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                        Thêm tòa nhà
+                                    </button>
+                                </div>
+
+                            }
+                            else
+                            {
+                                <div>
+                                    <button class="btn btn-info" type="button" id="btnUpdateBuilding">
+                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                        Cập nhật tòa nhà
+                                    </button>
+                                </div>
+                            }
+
+
+
                             <button class="btn" type="reset" style="    margin-left: 200px;   margin-top: -64px;">
                                 <i class="ace-icon fa fa-undo bigger-110"></i>
                                 Hủy
@@ -234,7 +283,336 @@
                         </div>
                     </div>
                 </form>
-            </div>
+        </div>
         </div>
     </div>
 </div>
+
+
+@section scripts {
+    <script type="text/javascript">
+
+        
+
+        var images = [];
+
+
+
+        function image_select() {
+            dataMultiple = new FormData()
+            var image = $('#image').get(0).files;
+            for (i = 0; i < image.length; i++) {
+                if (check_duplicate(image[i].name)) {
+                    images.push({
+                        "name": image[i].name,
+                        "url": URL.createObjectURL(image[i]),
+                        "file": image[i],
+                    })
+                    var x = image[i].name;
+                    dataMultiple.append(x, image[i]);
+                } else {
+                    alert(image[i].name + " is already added to the list");
+                }
+            }
+
+            $('#muttipleUploadFile').empty()
+            $('#muttipleUploadFile').append(image_show());
+
+        }
+
+
+        function image_show() {
+
+            var image = "";
+            images.forEach((i) => {
+                image += `
+                <div class="image_container col-sm-3 position-relative">
+   	  	  	  	  <img src="`+ i.url + `" alt="Image">
+   	  	  	  	  <span class="position-absolute" onclick="delete_image(`+ images.indexOf(i) + `)">&times;</span>
+   	  	  	  </div>`;
+            })
+            return image;
+        }
+
+         function get_image_data() {
+            var form = new FormData()
+            for (let index = 0; index < images.length; index++) {
+                form.append("file[" + index + "]", images[index]['file']);
+            }
+            return form;
+        }
+
+        function delete_image(e) {
+            images.splice(e, 1);
+            document.getElementById('muttipleUploadFile').innerHTML = image_show();
+
+
+        }
+
+
+        function check_duplicate(name) {
+
+            var image = true;
+            if (images.length > 0) {
+                for (e = 0; e < images.length; e++) {
+                    if (images[e].name == name) {
+                        image = false;
+                        break;
+                    }
+                }
+            }
+            return image;
+        }
+
+
+
+
+
+        /* Add building */
+
+
+       @* jQuery.extend(jQuery.validator.messages, {
+            required: "Không được bỏ trống trường này.",
+            remote: "Please fix this field.",
+            email: "Please enter a valid email address.",
+            url: "Please enter a valid URL.",
+            date: "Please enter a valid date.",
+            dateISO: "Please enter a valid date (ISO).",
+            number: "Vui lòng nhập số vào trường này.",
+            digits: "Vui lòng nhập số nguyên vào trường này.",
+            equalTo: "Please enter the same value again.",
+            accept: "Please enter a value with a valid extension.",
+            maxlength: jQuery.validator.format("Please enter no more than {0} characters."),
+            minlength: jQuery.validator.format("Please enter at least {0} characters."),
+            range: jQuery.validator.format("Please enter a value between {0} and {1}."),
+            max: jQuery.validator.format("Please enter a value less than or equal to {0}."),
+            min: jQuery.validator.format("Vui lòng nhập giá trị lớn hơn giá trị {0} .")
+        });
+
+        $('#formSubmit').validate({
+            rules: {
+                name: "required",
+                ward: "required",
+                street: "required",
+                district: "required",
+                numberofbasement: {
+                    required: true,
+                    digits: true,
+                    min: true
+                },
+                buildingarea: {
+                    required: true,
+                    number: true,
+                    min: true
+                },
+                rentArea: "required",
+                rentPrice: {
+                    required: true,
+                    number: true,
+                    min: true
+                },
+                buildingTypes: {
+                    required: true,
+                    minlength: 1
+                }
+
+
+            },
+            messages: {
+                name: "Vui lòng nhập tên của tòa nhà.",
+                ward: "Vui lòng nhập địa chỉ phường của tòa nhà. ",
+                street: "Vui lòng nhập địa chỉ đường của tòa nhà. ",
+                district: "Vui lòng nhập quận của tòa nhà.",
+                numberOfBasement: {
+                    required: "Vui lòng nhập số tầng hầm của tòa nhà.",
+                    digits: "Vui lòng nhập số nguyên vào trường này.",
+                    min: "Vui lòng nhập giá trị lớn hơn giá trị lớn hơn hoặc bằng 0 ."
+                },
+                buildingArea: {
+                    required: "Vui lòng nhập diện tích của tòa nhà.",
+                    number: "Vui lòng nhập số vào trường này.",
+                    min: "Vui lòng nhập giá trị lớn hơn giá trị lớn hơn hoặc bằng 0 ."
+                },
+                rentArea: "Vui lòng nhập diện tích thuê của tòa nhà.",
+                rentPrice: {
+                    required: "Vui lòng nhập giá thuê của tòa nhà.",
+                    number: "Vui lòng nhập số vào trường này.",
+                    min: "Vui lòng nhập giá trị lớn hơn giá trị lớn hơn hoặc bằng 0 ."
+                },
+                buildingTypes: {
+                    required: "Vui lòng lựa chọn loại của tòa nhà.",
+                    minlength: 1
+                }
+            }
+
+        })
+         *@
+
+        let fileName;
+        let dataFiles;
+        let dataMultiple;
+
+        $('#btnAddBuilding').click(function () {
+            warningBeforeAdd();
+        })
+
+        function warningBeforeAdd() {
+            showAlertBeforeAdd(function () {
+                event.preventDefault();
+                let dataAdd = dataBuilding();
+                uploadFile(dataFiles);
+                uploadMultipeFiles(dataMultiple);
+                addBuilding(dataAdd);
+
+            })
+        }
+
+        function dataBuilding() {
+            let data = {};
+            let buildingTypes = [];
+            let buildingImages = [];
+            let formData = $('#formSubmit').serializeArray();
+            $.each(formData, function (i, v) {
+                if (v.name == 'buildingTypes') {
+                    buildingTypes.push(v.value);
+                } else {
+                    data["" + v.name + ""] = v.value;
+                }
+            })
+            
+            $.each(images, function (i, v) {
+                buildingImages.push(v.name);
+            })
+
+            data['avatar'] = fileName;
+            data['buildingImages'] = buildingImages;
+            data['buildingTypes'] = buildingTypes;
+            return data;
+        }
+
+
+        function addBuilding(data) {
+            $.ajax({
+                url: '/Building/Insert',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                dataType: 'json',
+                success: function (response) {
+                    if (response.status) {
+                        swal("Saved!", "success").then((result) => {
+                            if (result.value) {
+                                location.reload();
+                                window.location.href = "/Building/EditBuilding"
+                            }
+                        });
+                    }
+                },
+                error: function () {
+                    swal("Error", "Could not be saved! :)", "error");
+                }
+            });
+        }
+
+        /* update building */
+
+        $('#btnUpdateBuilding').click(function () {
+            warningBeforeUpdate();
+        })
+
+        function warningBeforeUpdate() {
+            showAlertBeforeUpdate(function () {
+                event.preventDefault();
+                let dataEdit = dataBuilding();
+                let idOfBuilding = $('#buildlingId').val();
+                dataEdit['id'] = idOfBuilding;
+                uploadFile(dataFiles);
+                updateBuilding(dataEdit);
+
+            })
+        }
+
+        function updateBuilding(data) {
+            $.ajax({
+                url: '/Building/Edit',
+                type: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                dataType: 'json',
+                success: function (res) {
+                    if (res.status) {
+                        swal("Updated!", "success").then((result) => {
+                            if (result.value) {
+                                location.reload();
+                                window.location.href = "/Building/EditBuilding/" + res.id;
+                            }
+                        });
+                    }
+                },
+                error: function (res) {
+                    swal("Error", "Could not be updated! :)", "error");
+                    window.location.href = "/Building/EditBuilding/" + res.id;
+                }
+            });
+        }
+
+        /* file  */
+
+        $('#imageFile').change(function () {
+            showImageThumbnail(this);
+        })
+
+        function showImageThumbnail(fileInput) {
+
+            dataFiles = new FormData();
+            let file = fileInput.files[0];
+            let reader = new FileReader();
+            fileName = fileInput.files[0].name;
+
+            reader.onload = function (e) {
+                $('#fileImage').attr('src', e.target.result);
+                dataFiles.append('imageFile', fileInput.files[0]);
+            };
+            reader.readAsDataURL(file);
+        }
+
+
+
+        function uploadFile(dataFiles) {
+            $.ajax({
+                url: '/Building/ImageUpload',
+                type: 'POST',
+                data: dataFiles,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    console.log(result)
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+            });
+        }
+        /* file */
+
+        function uploadMultipeFiles(dataMultiple) {
+            $.ajax({
+                url: '/Building/UploadFiles',
+                type: 'POST',
+                data: dataMultiple,
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    console.log(result)
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+            });
+
+        }
+
+
+    </script>
+}

@@ -1,6 +1,7 @@
 $(document).ready(function () {
     bindEventCheckAllCheckBox('checkAll');
     enableOrDisableDeleteAll();
+  
     autoCheckCheckboxAll('checkAll');
 });
 

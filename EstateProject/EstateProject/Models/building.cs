@@ -115,5 +115,9 @@ namespace EstateProject.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<building_images> building_images { get; set; }
+
+
+       
+
     }
 }

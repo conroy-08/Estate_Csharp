@@ -15,6 +15,12 @@ namespace EstateProject
                       "~/Assets/Admin/js/sweetalert2.min.js"
                       ));
 
+            bundles.Add(new ScriptBundle("~/js/paging").Include(
+                    "~/Assets/Admin/paging/jquery.twbsPagination.js",
+                    "~/Assets/Admin/paging/jquery.twbsPagination.min.js"
+
+                    ));
+
             bundles.Add(new ScriptBundle("~/js/plugins").Include(
                   "~/Assets/Admin/js/jquery.validate.min.js",
                   "~/Assets/Admin/js/global_admin_script.js",

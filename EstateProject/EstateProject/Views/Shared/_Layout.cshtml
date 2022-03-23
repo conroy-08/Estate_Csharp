@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="//cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
     @Scripts.Render("~/js/base")
+    @Scripts.Render("~/js/paging")
     <style>
         .form-horizontal {
             font-family: VnBlack;
@@ -52,6 +53,30 @@
             font-weight: 600;
             text-align: left;
         }
+
+        .image_container {
+            height: 120px;
+            width: 200px;
+            overflow: hidden;
+            margin-top:10px;
+            margin-left: 10px;
+            margin-bottom: 6px;
+        }
+
+            .image_container img {
+                height: 100%;
+                width: auto;
+                object-fit: cover;
+            }
+
+            .image_container span {
+                top: -6px;
+                right: 8px;
+                color: red;
+                font-size: 28px;
+                font-weight: normal;
+                cursor: pointer;
+            }
     </style>
 </head>
 <body class="no-skin">
@@ -250,10 +275,11 @@
         <!-- menu -->
         <!-- body -->
         <div class="main-content">
-           
-                @RenderBody()
-          
+
+            @RenderBody()
+
         </div>
+    
 
         <!-- footer -->
         <div class="footer">
@@ -291,6 +317,62 @@
   
 
     @Scripts.Render("~/js/plugins")
+<script type="text/javascript">
+
+    function showAlertBeforeDelete(callback) {
+        swal({
+            title: "Xác nhận xóa",
+            text: "Bạn có chắc chắn xóa những dòng đã chọn",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Xác nhận",
+            cancelButtonText: "Hủy bỏ",
+            confirmButtonClass: "btn btn-success",
+            cancelButtonClass: "btn btn-danger"
+        }).then(function (res) {
+            if (res.value) {
+                callback();
+            } else if (res.dismiss == 'cancel') {
+                console.log('cancel');
+            }
+        });
+    }
+
+
+    function showAlertBeforeAdd(callback) {
+        swal({
+            title: 'Xác nhận lưu',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Xác nhận',
+            denyButtonText: `Hủy bỏ `,
+        }).then(function (res) {
+            if (res.value) {
+                callback();
+            } else if (res.dismiss == 'cancel') {
+                console.log('cancel');
+            }
+        });
+    }
+    function showAlertBeforeUpdate(callback) {
+        swal({
+            title: 'Xác nhận chỉnh sửa',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Xác nhận',
+            denyButtonText: `Hủy bỏ`,
+        }).then(function (res) {
+            if (res.value) {
+                callback();
+            } else if (res.dismiss == 'cancel') {
+                console.log('cancel');
+            }
+        });
+    }
+
+
+    
+</script>
 
     @RenderSection("scripts", required: false)
 </body>
