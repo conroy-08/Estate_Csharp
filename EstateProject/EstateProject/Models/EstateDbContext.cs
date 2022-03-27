@@ -20,6 +20,7 @@ namespace EstateProject.Models
         public virtual DbSet<rentarea> rentareas { get; set; }
         public virtual DbSet<transaction> transactions { get; set; }
         public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<contact> contacts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -247,6 +248,38 @@ namespace EstateProject.Models
                 .HasMany(e => e.transactions)
                 .WithOptional(e => e.user)
                 .HasForeignKey(e => e.staffid);
+
+            //================================+
+            modelBuilder.Entity<user>()
+                .HasMany(e => e.contacts)
+                .WithOptional(e => e.user)
+                .HasForeignKey(e => e.user_id);
+
+            modelBuilder.Entity<contact>()
+                .Property(e => e.email)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<contact>()
+                .Property(e => e.fullname)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<contact>()
+                .Property(e => e.phone)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<contact>()
+                .Property(e => e.title)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<contact>()
+                .Property(e => e.status)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<contact>()
+                .Property(e => e.messages)
+                .IsUnicode(false);
+
+
         }
     }
 }

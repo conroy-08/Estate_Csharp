@@ -61,6 +61,11 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.4.3.0\lib\net463\System.Linq.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -143,8 +148,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Common\CommonConstants.cs" />
     <Compile Include="Common\Encrytor.cs" />
+    <Compile Include="Common\SendMail.cs" />
     <Compile Include="Common\UserLogin.cs" />
     <Compile Include="Controllers\Admin\BaseController.cs" />
+    <Compile Include="Controllers\Admin\ContactController.cs" />
     <Compile Include="Controllers\Admin\CustomerController.cs" />
     <Compile Include="Controllers\Admin\LoginController.cs" />
     <Compile Include="Controllers\Admin\SettingController.cs" />
@@ -155,15 +162,23 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202203231010546_contacts.cs" />
+    <Compile Include="Migrations\202203231010546_contacts.designer.cs">
+      <DependentUpon>202203231010546_contacts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\assignmentbuilding.cs" />
     <Compile Include="Models\assignmentcustomer.cs" />
     <Compile Include="Models\building.cs" />
     <Compile Include="Models\building_images.cs" />
+    <Compile Include="Models\contact.cs" />
     <Compile Include="Models\customer.cs" />
     <Compile Include="Models\EstateDbContext.cs" />
+    <Compile Include="Models\ListContact.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\PasswordModel.cs" />
     <Compile Include="Models\rentarea.cs" />
+    <Compile Include="Models\SendEmail.cs" />
     <Compile Include="Models\transaction.cs" />
     <Compile Include="Models\user.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -332,11 +347,14 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Contact\ListContact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Assets\Client\" />
     <Folder Include="Controllers\Client\" />
+    <Folder Include="Views\AjaxAPI\" />
+    <Folder Include="Views\EmailAPI\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\login\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
@@ -438,6 +456,11 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.6.0.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202203231010546_contacts.resx">
+      <DependentUpon>202203231010546_contacts.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
