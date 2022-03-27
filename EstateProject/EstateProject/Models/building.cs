@@ -12,8 +12,8 @@ namespace EstateProject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public building()
         {
-            assignmentbuildings = new HashSet<assignmentbuilding>();
             rentareas = new HashSet<rentarea>();
+            rentareas1 = new HashSet<rentarea>();
             building_images = new HashSet<building_images>();
         }
 
@@ -107,17 +107,17 @@ namespace EstateProject.Models
         [StringLength(255)]
         public string modifiedby { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<assignmentbuilding> assignmentbuildings { get; set; }
+        public int? user_id { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<rentarea> rentareas { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<rentarea> rentareas1 { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<building_images> building_images { get; set; }
 
-
-       
-
+        public virtual user user { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿@model EstateProject.Dto.BuildingDto
 
 @{
-    ViewBag.Title = "ChinhSuaToaNha";
+    ViewBag.Title = "Chỉnh sửa tòa nhà ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,8 +11,8 @@
 
 
             try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
- 
-</script>
+
+        </script>
         <ul class="breadcrumb">
             <li>
                 <i class="ace-icon fa fa-home home-icon"></i>
@@ -43,8 +43,21 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="district"> Quận :</label>
                         <div class="col-sm-3" style="margin-bottom: 10px;">
-                            <select id="district">
+                            <select id="district" name="district">
                                 <option value=""> -- Chọn quận -- </option>
+                                <option value="Ba Đình">Ba Đình</option>
+                                <option value="Bắc Từ Liêm">Bắc Từ Liêm</option>
+                                <option value="Cầu Giấy">Cầu Giấy</option>
+                                <option value="Đống Đa">Đống Đa</option>
+                                <option value="Hà Đông">Hà Đông</option>
+                                <option value="Cầu Giấy">Cầu Giấy</option>
+                                <option value="Hai Bà Trưng">Hai Bà Trưng</option>
+                                <option value="Hoàn Kiếm">Hoàn Kiếm</option>
+                                <option value="Hoàng Mai">Hoàng Mai</option>
+                                <option value="Long Biên">Long Biên</option>
+                                <option value="Nam Từ Liêm">Nam Từ Liêm</option>
+                                <option value="Tây Hồ">Tây Hồ</option>
+                                <option value="Thanh Xuân">Thanh Xuân</option>
 
                             </select>
                         </div>
@@ -179,14 +192,47 @@
                             <input type="text" class="form-control" id="brokerageFee" name="brokeragefee" value="@Model.brokeragetee" />
                         </div>
                     </div>
-
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" >Nhân viên quản lý :</label>
+                        <div class="col-sm-3" style="margin-bottom: 10px;">
+              
+                            @Html.DropDownListFor(m => m.UserId, (SelectList)ViewBag.UserID, "-- Chọn nhân viên --")
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right"> Loại tòa nhà :</label>
                         <div class="col-sm-7">
+                            @{
 
-                            <input type="checkbox" name="buildingTypes" value="TANG_TRET" /> <label> Tầng Trệt </label>
-                            <input type="checkbox" name="buildingTypes" value="NOI_THAT" /> <label> Nội Thất </label>
-                            <input type="checkbox" name="buildingTypes" value="NGUYEN_CAN" /> <label> Nguyên Căn </label>
+                                var check1 = "";
+                                var check2 = "";
+                                var check3 = "";
+                                if (Model.buildingTypes != null)
+                                {
+
+                                    foreach (var type in Model.buildingTypes)
+                                    {
+                                        if (type.Equals("TANG_TRET"))
+                                        {
+                                            check1 += "checked";
+                                        }
+                                        else if (type.Equals("NOI_THAT"))
+                                        {
+                                            check2 += "checked";
+                                        }
+                                        else if (type.Equals("NGUYEN_CAN"))
+                                        {
+                                            check3 += "checked";
+                                        }
+
+                                    }
+                                }
+
+
+                            }
+                            <input type="checkbox" name="buildingTypes" value="TANG_TRET" @check1 /> <label> Tầng Trệt </label>
+                            <input type="checkbox" name="buildingTypes" value="NOI_THAT" @check2 /> <label> Nội Thất </label>
+                            <input type="checkbox" name="buildingTypes" value="NGUYEN_CAN" @check3 /> <label> Nguyên Căn </label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -196,6 +242,7 @@
 
                         </div>
                     </div>
+                    <br/>
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right">Ảnh đại diện</label>
                         <div class="col-sm-4">
@@ -215,7 +262,7 @@
                         </div>
                     </div>
 
-
+                    <br />
                     <div class="form-group">
 
                         <label class="col-sm-3 control-label no-padding-right">Ảnh mở rộng</label>
@@ -292,12 +339,12 @@
 @section scripts {
     <script type="text/javascript">
 
+        let editor = '';
+        $(document).ready(function () {
+            editor = CKEDITOR.replace('note');
+        })
 
-        
-        var x = '@baseUrl';
-
-
-
+    
         var oldFileNameBuilding = '@Model.avatar';
 
         var images = [];

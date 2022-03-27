@@ -47,6 +47,7 @@ namespace EstateProject.Common
         {
             BuildingDto building = new BuildingDto();
             building.id = entity.id;
+            building.UserId = entity.user_id;
             building.address = entity.name  + ", " + entity.ward + ", " + entity.district;
             building.name = entity.name;
             building.street = entity.street;
@@ -75,12 +76,20 @@ namespace EstateProject.Common
             building.avatar = entity.avatar;
             building.buildingImages = builidingImages(entity.building_images);
             building.rentareas = AllToString(entity.rentareas);
-          
+            if(entity.typess != null)
+            {
+                building.buildingTypes = entity.typess.Split(',');
+            }
+            
 
             return building;
         }
 
-        public static string AllToString(ICollection<rentarea> hashset)
+
+
+      
+
+        private static string AllToString(ICollection<rentarea> hashset)
         {
                 string rentArea = null;
 
@@ -93,7 +102,7 @@ namespace EstateProject.Common
             rentArea = string.Join(",", list);
             return rentArea;
         }
-        public static string[] builidingImages(ICollection<building_images> hashset)
+        private static string[] builidingImages(ICollection<building_images> hashset)
         {
             string[] images = new string[hashset.Count];
             int index = 0;

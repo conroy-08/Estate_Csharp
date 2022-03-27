@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using EstateProject.Common;
 using EstateProject.Models;
@@ -53,6 +54,23 @@ namespace EstateProject.Dao
         public user GetById(String userName)
         {
             return dbContext.users.SingleOrDefault(x => x.username == userName);
+        }
+        public user FindById(int? id)
+        {
+            return dbContext.users.SingleOrDefault(x => x.id == id);
+        }
+        public List<user> findByRoleAndStatus(string role , int status)
+        {
+            StringBuilder sql = new StringBuilder("select * from users as u  where 1 = 1  ");
+
+            if(role != null)
+            {
+                sql.Append(" and u.role ='" + role + "'");
+            }
+            sql.Append(" and u.status = " + status);
+            var model = dbContext.users.SqlQuery(sql.ToString()).ToList();
+            return model;
+
         }
 
         public int login(String userName, String passWord)

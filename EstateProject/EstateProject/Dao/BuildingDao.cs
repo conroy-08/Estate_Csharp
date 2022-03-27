@@ -2,7 +2,8 @@
 using EstateProject.Common;
 using EstateProject.Dto;
 using EstateProject.Models;
-using Microsoft.Ajax.Utilities;
+
+using PagedList;
 using System;
 using System.Collections.Generic;
 
@@ -21,39 +22,36 @@ namespace EstateProject.Dao
             dbContext = new EstateDbContext();
         }
 
-        public List<building> findAll(BuildingSearchDto buildingSearch /*, int page, int pageSize*/)
-        {
-               
 
+        public List<BuildingDto> findAll(BuildingDto dto)
+        {
+            
+            List<BuildingDto> temp = new List<BuildingDto>();
+            BuildingSearchDto buildingSearch = initBuildingSearch(dto);
             StringBuilder sql = new StringBuilder("select * from building as b  where 1 = 1  ");
+           
             createWhereClausePart1(buildingSearch, sql);
             createWhereClausePart2(buildingSearch, sql);
+        
+            var model = dbContext.buildings.SqlQuery(sql.ToString()).OrderByDescending(x => x.id)
+                   .Skip((dto.page - 1) * dto.limit).Take(dto.limit).ToList();
 
-          /*  var model = dbContext.buildings.SqlQuery(sql.ToString()).OrderByDescending(x => x.id)
-                 .Skip((page - 1) * pageSize).Take(pageSize).ToList();*/
-            var model = dbContext.buildings.SqlQuery(sql.ToString()).ToList();
-            return model;
-        }
-
-
-
-        public List<Array> Search(BuildingSearchDto buildingSearch)
-        {
-            List<Array> temp = new List<Array>();
-
-            StringBuilder sql = new StringBuilder("select * from building as b  where 1 = 1  ");
-            createWhereClausePart1(buildingSearch, sql);
-            createWhereClausePart2(buildingSearch, sql);
-
-            var model = dbContext.buildings.SqlQuery(sql.ToString()).ToList();
-                
+            foreach (var item in model)
+            {
+                BuildingDto building = BuildingConverter.converterToDto(item);
+                temp.Add(building);
+            }
             return temp;
         }
 
         private void createWhereClausePart1(BuildingSearchDto buildingSearch, StringBuilder sql)
         {
-             
-             FieldInfo[] properties = buildingSearch.GetType().GetFields(BindingFlags.Public |
+            if (buildingSearch.UserId != 0 && buildingSearch.UserId != null)
+            {
+                sql.Append("and user_id =" + buildingSearch.UserId);
+            }
+
+            FieldInfo[] properties = buildingSearch.GetType().GetFields(BindingFlags.Public |
                                               BindingFlags.NonPublic |
                                               BindingFlags.Instance);
 
@@ -63,16 +61,15 @@ namespace EstateProject.Dao
                 string[] str = item.Name.Split('<','>');
                 string name = str[1];
                 object objectvalue = item.GetValue(buildingSearch);
-                   if (!name.Equals("buildingTypes")  && !name.StartsWith("areaRent") && !name.StartsWith("costRent")){
-                        if (item.FieldType.Equals(typeof(String))) {
-                            String value = (String) objectvalue;
-
-                            if (!String.IsNullOrEmpty(value)) {
-                                sql.Append("AND b." + name + " LIKE '%" + objectvalue + "%' \n");
+                   if (!name.Equals("buildingTypes") && !name.Equals("UserId") && !name.StartsWith("areaRent") && !name.StartsWith("costRent")){
+                        if (item.FieldType.Equals(typeof(string))) {
+                            string value = (string) objectvalue;
+                            if (!string.IsNullOrEmpty(value)) {
+                                sql.Append(" AND b." + name + " LIKE '%" + objectvalue + "%' \n");
                             }
-                        } else if (item.FieldType.Equals(typeof(Int32)) || item.FieldType.Equals(typeof(Double))) {
+                        } else if (item.FieldType.Equals(typeof(int)) || item.FieldType.Equals(typeof(double))) {
                             if (!objectvalue.Equals(0)) {
-                                sql.Append("AND b." + name + " = " + objectvalue + " \n");
+                                sql.Append(" AND b." + name + " = " + objectvalue + " \n");
                             }
                         }
                 }
@@ -81,14 +78,16 @@ namespace EstateProject.Dao
 
         private void createWhereClausePart2(BuildingSearchDto buildingSearch, StringBuilder sql)
         {
-            if(buildingSearch.costRentFrom != 0 || buildingSearch.costRentTo != 0)
+            
+
+            if (buildingSearch.costRentFrom != 0 || buildingSearch.costRentTo != 0)
             {
                 sql.Append(BuildBetweenQuery("b.rentprice", buildingSearch.costRentFrom, buildingSearch.costRentTo));
                 sql.Append("\n");
             }
             if (buildingSearch.areaRentFrom != 0 || buildingSearch.areaRentTo != 0)
             {
-                sql.Append("AND EXISTS (SELECT * FROM rentarea ra WHERE ra.buildingid = b.id ");
+                sql.Append(" AND EXISTS (SELECT * FROM rentarea ra WHERE ra.buildingid = b.id ");
                 sql.Append(BuildBetweenQuery("ra.value", buildingSearch.areaRentFrom, buildingSearch.areaRentTo));
                 sql.Append(")\n");
             }
@@ -106,6 +105,48 @@ namespace EstateProject.Dao
             }
         }
 
+        private BuildingSearchDto initBuildingSearch(BuildingDto building)
+        {
+            BuildingSearchDto builder = new BuildingSearchDto();
+
+            builder.areaRentFrom = building.areaRentFrom;
+            builder.areaRentTo = building.areaRentTo;
+
+            builder.costRentFrom = building.costRentFrom;
+            builder.costRentTo = building.costRentTo;
+
+            builder.numberofbasement = building.numberofbasement;
+            builder.floorarea = building.floorarea;
+
+            builder.UserId = building.UserId;
+            builder.street = building.street;
+
+            builder.ward = building.ward;
+            builder.district = building.district;
+
+            builder.direction = building.direction;
+            builder.name = building.name;
+
+            builder.levels = building.levels;
+            builder.buildingTypes = building.buildingTypes;
+
+            return builder;
+
+        }
+
+        public int countBySearch(BuildingDto dto)
+        {
+
+           
+            BuildingSearchDto buildingSearch = initBuildingSearch(dto);
+            StringBuilder sql = new StringBuilder("select * from building as b  where 1 = 1  ");
+
+            createWhereClausePart1(buildingSearch, sql);
+            createWhereClausePart2(buildingSearch, sql);
+            var model = dbContext.buildings.SqlQuery(sql.ToString()).ToList();
+           
+            return model.Count();
+        }
         private string BuildBetweenQuery(string column, object from , object to)
         {
             if (from == null && to == null) return "";
@@ -128,10 +169,7 @@ namespace EstateProject.Dao
 
         }
 
-        public int count()
-        {
-            return dbContext.buildings.Count();
-        }
+       
 
         public long save( BuildingDto buildingDto)
         {
@@ -271,7 +309,7 @@ namespace EstateProject.Dao
         }
 
         public building findById(int? buildingId)
-        {
+        {    
             return dbContext.buildings.Find(buildingId);
         }
 
@@ -296,6 +334,8 @@ namespace EstateProject.Dao
             }
         }
 
+
+      
 
       
     }

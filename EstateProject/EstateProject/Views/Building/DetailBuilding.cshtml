@@ -110,12 +110,40 @@
                                         <td>@Model.overtimefee</td>
                                     </tr>
                                     <tr>
+                                        @{
+
+                                            var check1 = "";
+                                            var check2 = "";
+                                            var check3 = "";
+                                            if (Model.buildingTypes != null)
+                                            {
+
+                                                foreach (var type in Model.buildingTypes)
+                                                {
+                                                    if (type.Equals("TANG_TRET"))
+                                                    {
+                                                        check1 += "checked";
+                                                    }
+                                                    else if (type.Equals("NOI_THAT"))
+                                                    {
+                                                        check2 += "checked";
+                                                    }
+                                                    else if (type.Equals("NGUYEN_CAN"))
+                                                    {
+                                                        check3 += "checked";
+                                                    }
+
+                                                }
+                                            }
+
+
+                                        }
                                         <td scope="row">Loại tòa nhà : </td>
                                         <td>
                                             <li>
-                                                <input type="checkbox" /> <label> Tầng Trệt </label>
-                                                <input type="checkbox" /> <label> Nội Thất </label>
-                                                <input type="checkbox" /> <label> Nguyên Căn </label>
+                                                <input type="checkbox"  @check1 /> <label> Tầng Trệt </label>
+                                                <input type="checkbox" @check2 /> <label> Nội Thất </label>
+                                                <input type="checkbox"  @check3 /> <label> Nguyên Căn </label>
                                             </li>
                                         </td>
                                     </tr>
@@ -139,8 +167,11 @@
                         <h6 style="font-family: VnBlack ; font-weight: bold; color: #000000;">Ghi chú </h6>
                         <p>Ghi chú sẽ được thêm vào sau </p>
                     </div>
+                    <div class="col-sm-5" id="map">
+
+                    </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -149,10 +180,36 @@
 
 @section scripts {
 
-    <script type="text/javascript">
+    @*<script src="~/Assets/Admin/map/contact.js"></script>*@
+    <script>
+        function initMap() {
+            const uluru = { lat: -25.363, lng: 131.044 };
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 4,
+                center: uluru,
+            });
 
+            const contentString = "Hello";
 
+            const infowindow = new google.maps.InfoWindow({
+                content: contentString,
+            });
+            const marker = new google.maps.Marker({
+                position: uluru,
+                map,
+                title: "Uluru (Ayers Rock)",
+            });
+
+            marker.addListener("click", () => {
+                infowindow.open({
+                    anchor: marker,
+                    map,
+                    shouldFocus: false,
+                });
+            });
+        }
 
     </script>
-
+   
+    
 }

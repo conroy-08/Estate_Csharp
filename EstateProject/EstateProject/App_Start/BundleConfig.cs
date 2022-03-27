@@ -42,7 +42,8 @@ namespace EstateProject
                       "~/Assets/Admin/css/bootstrap.min.css",
                       "~/Assets/Admin/css/ace.min.css",
                       "~/Assets/Admin/css/font-awesome.min.css",
-                      "~/Assets/Admin/css/sweetalert2.min.css"
+                      "~/Assets/Admin/css/sweetalert2.min.css",
+                      "~/Assets/Admin/css/style.css"
                       ));
         }
     }

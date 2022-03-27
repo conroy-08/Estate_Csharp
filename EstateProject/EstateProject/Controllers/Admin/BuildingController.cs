@@ -3,12 +3,13 @@ using EstateProject.Controllers.Admin;
 using EstateProject.Dao;
 using EstateProject.Dto;
 using EstateProject.Models;
+using PagedList;
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Dynamic;
 using System.Linq;
 using System.Net;
-using System.Text;
+
 using System.Web;
 using System.Web.Mvc;
 
@@ -20,12 +21,22 @@ namespace EstateProject.Controllers
 
        
    
-        public ActionResult ListBuilding(BuildingSearchDto building)
+        public ActionResult ListBuilding( BuildingDto searchDto )
         {
-
+            if (Session["Role"] != null)
+            {
+                if (Session["Role"].ToString() == "STAFF")
+                {
+                    searchDto.UserId = (int)Session["UserId"];
+                }
+            }
             var dao = new BuildingDao();
-            var data = dao.findAll(building);
-            return View(data);
+            searchDto.totalItems = dao.countBySearch(searchDto);
+            searchDto.totalPage = (int)Math.Ceiling((double)searchDto.totalItems / searchDto.limit);
+            var model = dao.findAll(searchDto);
+            ViewBag.ListBuildings = model;
+            SetViewBag();
+            return View(searchDto);
 
 
         }
@@ -43,16 +54,19 @@ namespace EstateProject.Controllers
                 return HttpNotFound();
             }
             BuildingDto buildingDto = BuildingConverter.converterToDto(building);
-
+            SetViewBag();
             return View(buildingDto);
         }
 
         public ActionResult EditBuilding(int? id )
         {
-              
+             
+                
+                
                 if (id == null)
                 {
-                   return View(new BuildingDto());
+                    SetViewBag();
+                    return View(new BuildingDto());
                 }
                 var building = new BuildingDao().findById(id);
                 if (building == null)
@@ -60,12 +74,17 @@ namespace EstateProject.Controllers
                         return HttpNotFound();
                 }
                 BuildingDto buildingDto = BuildingConverter.converterToDto(building);
-                
+                SetViewBag();
                 return View(buildingDto);
            
         }
 
+        public void SetViewBag(int? selectedId = null)
+        {
+            var dao = new UserDao();
+            ViewBag.UserID = new SelectList(dao.findByRoleAndStatus("STAFF", 1), "id", "fullname", selectedId);
 
+        }
 
         [HttpGet]
         public JsonResult getAll()
@@ -154,7 +173,7 @@ namespace EstateProject.Controllers
                     }
                 }
                
-                return Json(new { status = true });
+                return Json(new { status = status });
             }
             catch (Exception e)
             {
@@ -205,6 +224,8 @@ namespace EstateProject.Controllers
             return Json(path, JsonRequestBehavior.AllowGet);
         }
 
+
+        
 
     }
 }

@@ -8,6 +8,7 @@ namespace EstateProject.Dto
     public class BuildingDto
     {
         public int id { get; set; }
+    
         public string name { get; set; }
 
         public string street { get; set; }
@@ -98,9 +99,42 @@ namespace EstateProject.Dto
 
         public string[] buildingImages { get; set; }
 
-   
+        public int costRentFrom { get; set; }
 
-      
+        public int costRentTo { get; set; }
+
+        public int areaRentFrom { get; set; }
+
+        public int areaRentTo { get; set; }
+        public int? UserId { get; set; }
+
+        public int _page = 1;
+        public int page
+        {
+            get
+            {
+                return _page;
+            }
+            set
+            {
+                _page = value;
+            }
+        }
+
+        public int _limit = 5;
+        public int limit
+        {
+            get
+            {
+                return _limit;
+            }
+            set
+            {
+                _limit = value;
+            }
+        }
+        public int totalPage { get; set; }
+        public int totalItems { get; set; }
 
 
     }
