@@ -8,38 +8,19 @@ namespace EstateProject.Models
     public partial class EstateDbContext : DbContext
     {
         public EstateDbContext()
-            : base("name=EstateDbContext")
+            : base("name=EstateDbContext1")
         {
         }
 
-        public virtual DbSet<assignmentbuilding> assignmentbuildings { get; set; }
-        public virtual DbSet<assignmentcustomer> assignmentcustomers { get; set; }
         public virtual DbSet<building> buildings { get; set; }
         public virtual DbSet<building_images> building_images { get; set; }
-        public virtual DbSet<customer> customers { get; set; }
         public virtual DbSet<rentarea> rentareas { get; set; }
-        public virtual DbSet<transaction> transactions { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<contact> contacts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<assignmentbuilding>()
-                .Property(e => e.createdby)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<assignmentbuilding>()
-                .Property(e => e.modifiedby)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<assignmentcustomer>()
-                .Property(e => e.createdby)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<assignmentcustomer>()
-                .Property(e => e.modifiedby)
-                .IsUnicode(false);
-
             modelBuilder.Entity<building>()
                 .Property(e => e.name)
                 .IsUnicode(false);
@@ -145,6 +126,16 @@ namespace EstateProject.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<building>()
+                .HasMany(e => e.rentareas)
+                .WithOptional(e => e.building)
+                .HasForeignKey(e => e.buildingid);
+
+            modelBuilder.Entity<building>()
+                .HasMany(e => e.rentareas1)
+                .WithOptional(e => e.building1)
+                .HasForeignKey(e => e.buildingid);
+
+            modelBuilder.Entity<building>()
                 .HasMany(e => e.building_images)
                 .WithOptional(e => e.building)
                 .HasForeignKey(e => e.building_id);
@@ -153,47 +144,11 @@ namespace EstateProject.Models
                 .Property(e => e.name)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<customer>()
-                .Property(e => e.fullname)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<customer>()
-                .Property(e => e.phone)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<customer>()
-                .Property(e => e.email)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<customer>()
-                .Property(e => e.createdby)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<customer>()
-                .Property(e => e.modifiedby)
-                .IsUnicode(false);
-
             modelBuilder.Entity<rentarea>()
                 .Property(e => e.createdby)
                 .IsUnicode(false);
 
             modelBuilder.Entity<rentarea>()
-                .Property(e => e.modifiedby)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<transaction>()
-                .Property(e => e.code)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<transaction>()
-                .Property(e => e.note)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<transaction>()
-                .Property(e => e.createdby)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<transaction>()
                 .Property(e => e.modifiedby)
                 .IsUnicode(false);
 
@@ -222,11 +177,6 @@ namespace EstateProject.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<user>()
-              .Property(e => e.image)
-              .IsUnicode(false);
-
-
-            modelBuilder.Entity<user>()
                 .Property(e => e.createdby)
                 .IsUnicode(false);
 
@@ -235,13 +185,13 @@ namespace EstateProject.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<user>()
-                .HasMany(e => e.assignmentbuildings)
-                .WithOptional(e => e.user)
-                .HasForeignKey(e => e.staffid);
+                .Property(e => e.image)
+                .IsUnicode(false);
 
             modelBuilder.Entity<user>()
-                .HasMany(e => e.assignmentcustomers)
+                .HasMany(e => e.buildings)
                 .WithOptional(e => e.user)
+<<<<<<< HEAD
                 .HasForeignKey(e => e.staffid);
 
             modelBuilder.Entity<user>()
@@ -280,6 +230,9 @@ namespace EstateProject.Models
                 .IsUnicode(false);
 
 
+=======
+                .HasForeignKey(e => e.user_id);
+>>>>>>> 54f713d321f3dd6aeaf917aaebcbf82785796931
         }
     }
 }

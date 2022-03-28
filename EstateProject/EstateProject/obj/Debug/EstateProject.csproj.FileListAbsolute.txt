@@ -56,6 +56,8 @@ E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\bin\Entit
 E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\bin\Microsoft.Web.Infrastructure.dll
 E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\bin\Newtonsoft.Json.dll
+E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\bin\PagedList.dll
+E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\bin\PagedList.Mvc.dll
 E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\bin\System.Net.Http.Formatting.dll
 E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\bin\System.Web.Helpers.dll
 E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\bin\System.Web.Http.dll
@@ -69,6 +71,8 @@ E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\bin\Syste
 E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\bin\WebGrease.dll
 E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\bin\EntityFramework.xml
 E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\bin\EntityFramework.SqlServer.xml
+E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\bin\PagedList.xml
+E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\bin\PagedList.Mvc.xml
 E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\bin\System.Web.Helpers.xml
 E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\bin\System.Web.Mvc.xml
 E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\bin\System.Web.Optimization.xml
@@ -82,9 +86,11 @@ E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\bin\Syste
 E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\bin\System.Web.Http.xml
 E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\bin\System.Web.Http.WebHost.xml
 E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\obj\Debug\EstateProject.csproj.AssemblyReference.cache
 E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\obj\Debug\EstateProject.csproj.CoreCompileInputs.cache
 E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\obj\Debug\EstateProject.dll
 E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\obj\Debug\EstateProject.pdb
+<<<<<<< HEAD
 E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\obj\Debug\EstateProject.csproj.AssemblyReference.cache
 D:\AriesS\Môn Học\Năm 3 kì 2\Lập Trình Web\BTL\Estate_Csharp\EstateProject\EstateProject\bin\EstateProject.dll.config
 D:\AriesS\Môn Học\Năm 3 kì 2\Lập Trình Web\BTL\Estate_Csharp\EstateProject\EstateProject\bin\EstateProject.dll
@@ -386,3 +392,5 @@ D:\AriesS\Môn Học\Năm 3 kì 2\Lập Trình Web\BTL_Moi - Sao chép\Estate_Cs
 D:\AriesS\Môn Học\Năm 3 kì 2\Lập Trình Web\BTL_Moi - Sao chép\Estate_Csharp\EstateProject\EstateProject\obj\Debug\EstateProject.Migrations.contacts.resources
 D:\AriesS\Môn Học\Năm 3 kì 2\Lập Trình Web\BTL_Moi - Sao chép\Estate_Csharp\EstateProject\EstateProject\obj\Debug\EstateProject.csproj.GenerateResource.cache
 D:\AriesS\Môn Học\Năm 3 kì 2\Lập Trình Web\BTL_Moi - Sao chép\Estate_Csharp\EstateProject\EstateProject\bin\Newtonsoft.Json.dll
+=======
+>>>>>>> 54f713d321f3dd6aeaf917aaebcbf82785796931

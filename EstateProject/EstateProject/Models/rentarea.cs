@@ -26,5 +26,7 @@ namespace EstateProject.Models
         public string modifiedby { get; set; }
 
         public virtual building building { get; set; }
+
+        public virtual building building1 { get; set; }
     }
 }
