@@ -11,9 +11,19 @@ namespace EstateProject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public user()
         {
+<<<<<<< HEAD
+            assignmentbuildings = new HashSet<assignmentbuilding>();
+            assignmentcustomers = new HashSet<assignmentcustomer>();
+            transactions = new HashSet<transaction>();
+            contacts = new HashSet<contact>();
+
+        }  
+
+=======
             buildings = new HashSet<building>();
         }
 
+>>>>>>> 54f713d321f3dd6aeaf917aaebcbf82785796931
         public int id { get; set; }
 
         [Required]
@@ -53,6 +63,19 @@ namespace EstateProject.Models
         public string image { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+<<<<<<< HEAD
+        public virtual ICollection<assignmentbuilding> assignmentbuildings { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<assignmentcustomer> assignmentcustomers { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<transaction> transactions { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<contact> contacts { get; set; }
+=======
         public virtual ICollection<building> buildings { get; set; }
+>>>>>>> 54f713d321f3dd6aeaf917aaebcbf82785796931
     }
 }
