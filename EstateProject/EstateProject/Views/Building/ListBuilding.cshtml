@@ -200,7 +200,7 @@
                 <div class="row full-details">
                     <div class="col-sm-12">
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-sm-12" >
                                 <div class="table-responsive">
                                     <table id="buildingList" class="table  table-bordered ">
                                         <thead>
@@ -252,10 +252,6 @@
                                                                href="/Building/DetailBuilding/@item.id">
                                                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                                             </a>
-
-                                                            <a class="btn btn-xs btn-primary " data-toggle="tooltip" title="Thêm vào danh sách ưu tiên ">
-                                                                <i class="fa fa-plus" aria-hidden="true"></i>
-                                                            </a>
                                                         </td>
 
                                                     </tr>
@@ -275,55 +271,51 @@
                     </div>
                 </div> <!-- building-list-->
                 <!-- reponsive -->
-                <div class="row less-details">
-                    <div class="col-sm-12">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="table-responsive">
-                                    @{
-                                        foreach (var item in ViewBag.ListBuildings)
-                                        {
+                 
+                <div class="less-details" style="margin-top:50px;">
 
-                                            var userDao = new UserDao();
-                                            var user = userDao.FindById(item.UserId);
-                                            var address = @item.street + ", " + @item.ward + ", " + @item.district;
-                                            var baseurl = Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port + Url.Content("~/Assets/Upload/Building/");
-                                            var imageSrc = baseurl + item.avatar;
 
-                                            
-                                                <div class="col-2">
-                                                    <img src="@imageSrc" id="fileImage" alt="Ảnh đại diện" style="width: 120px; height: 120px;" />
+
+                    @{
+                        foreach (var item in ViewBag.ListBuildings)
+                        {
+
+                            var userDao = new UserDao();
+                            var user = userDao.FindById(item.UserId);
+                            var address = @item.street + ", " + @item.ward + ", " + @item.district;
+                            var baseurl = Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port + Url.Content("~/Assets/Upload/Building/");
+                            var imageSrc = baseurl + item.avatar;
+
+                                        <div class="row">
+                                            <div class="col-sm-12" style="width:100%">
+                                                <img src="@imageSrc" id="fileImage" alt="Ảnh đại diện" style="width: 120px; height: 120px; float: left; margin-bottom: 15px; margin-right: 15px;" />
+                                                <div style="font-family: VnBlack; font-weight: bold; color: #000000; float: left;" >
+                                                    <h6>@item.name</h6>
+                                                    <h6>@address</h6>
+                                                    <h6>@item.rentprice</h6>
+                                                    <h6> @user.fullname</h6>
+                                                    <h6> @user.phone</h6>
                                                 </div>
-                                                <div class="col-8">
-                                                    <div class="mb-1">
-                                                        <span> @user.fullname</span>
-                                                        <span> @user.phone</span>
-                                                    </div>
-                                                    <div>
-                                                        <a class="btn btn-xs btn-primary " data-toggle="tooltip" title="Cập nhật bài viết"
-                                                           href="/Building/EditBuilding/@item.id">
-                                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                        </a>
+                                                <div style="float:right;">
+                                                    <a class="btn btn-xs btn-primary " data-toggle="tooltip" title="Cập nhật bài viết"
+                                                       href="/Building/EditBuilding/@item.id">
+                                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                    </a>
 
-                                                        <a class="btn btn-xs btn-primary " data-toggle="tooltip" title="Thông tin tòa nhà "
-                                                           href="/Building/DetailBuilding/@item.id">
-                                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                                        </a>
-                                                    </div>
+                                                    <a class="btn btn-xs btn-primary " data-toggle="tooltip" title="Thông tin tòa nhà "
+                                                       href="/Building/DetailBuilding/@item.id">
+                                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                                    </a>
+                                                    <input type="checkbox" id="checkbox_@item.id" value="@item.id" />
                                                 </div>
+                                            </div>
 
-                                           
-                                        }
-                                    }
+                                        </div>
 
-        
 
-                                </div>
-                                </div>
-
-                            </div>
-                    </div>
-                </div> <!-- building-list-reponsive-->
+                               }
+                         }
+                    </div> <!-- building-list-reponsive-->
 
                 <!-- paginantion -->
                 <ul class="pagination" id="pagination"></ul>
