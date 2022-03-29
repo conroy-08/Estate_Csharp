@@ -11,9 +11,23 @@ namespace EstateProject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public user()
         {
+<<<<<<< HEAD
             buildings = new HashSet<building>();
         }
 
+=======
+//<<<<<<< HEAD
+
+            contacts = new HashSet<contact>();
+
+        
+
+//=======
+            buildings = new HashSet<building>();
+        }
+
+//>>>>>>> 54f713d321f3dd6aeaf917aaebcbf82785796931
+>>>>>>> c93ae29b451475b8effce04c46f8fa22c88e52c9
         public int id { get; set; }
 
         [Required]
@@ -52,7 +66,16 @@ namespace EstateProject.Models
         [StringLength(255)]
         public string image { get; set; }
 
+<<<<<<< HEAD
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<building> buildings { get; set; }
+=======
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<contact> contacts { get; set; }
+//=======
+        public virtual ICollection<building> buildings { get; set; }
+//>>>>>>> 54f713d321f3dd6aeaf917aaebcbf82785796931
+>>>>>>> c93ae29b451475b8effce04c46f8fa22c88e52c9
     }
 }
