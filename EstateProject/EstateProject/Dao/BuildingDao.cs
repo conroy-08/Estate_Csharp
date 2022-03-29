@@ -3,7 +3,6 @@ using EstateProject.Common;
 using EstateProject.Dto;
 using EstateProject.Models;
 
-using PagedList;
 using System;
 using System.Collections.Generic;
 
