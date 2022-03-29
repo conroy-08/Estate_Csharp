@@ -172,33 +172,28 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-<<<<<<< HEAD
+    <!--">>>>>>> HEAD"-->
     <Compile Include="Migrations\202203231010546_contacts.cs" />
     <Compile Include="Migrations\202203231010546_contacts.designer.cs">
       <DependentUpon>202203231010546_contacts.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\assignmentbuilding.cs" />
-    <Compile Include="Models\assignmentcustomer.cs" />
     <Compile Include="Models\building.cs" />
     <Compile Include="Models\building_images.cs" />
     <Compile Include="Models\contact.cs" />
-    <Compile Include="Models\customer.cs" />
-=======
+    <!--"======="-->
     <Compile Include="Models\building.cs" />
     <Compile Include="Models\building_images.cs" />
->>>>>>> 54f713d321f3dd6aeaf917aaebcbf82785796931
+    <!--">>>>>>> 54f713d321f3dd6aeaf917aaebcbf82785796931"-->
     <Compile Include="Models\EstateDbContext.cs" />
     <Compile Include="Models\ListContact.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\PasswordModel.cs" />
     <Compile Include="Models\rentarea.cs" />
-<<<<<<< HEAD
+    <!--">>>>>>> HEAD"-->
     <Compile Include="Models\SendEmail.cs" />
-    <Compile Include="Models\transaction.cs" />
-=======
-    <Compile Include="Models\sysdiagram.cs" />
->>>>>>> 54f713d321f3dd6aeaf917aaebcbf82785796931
+    <!--"======="-->
+    <!--">>>>>>> 54f713d321f3dd6aeaf917aaebcbf82785796931"-->
     <Compile Include="Models\user.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

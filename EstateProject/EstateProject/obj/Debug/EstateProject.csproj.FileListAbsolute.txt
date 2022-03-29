@@ -91,7 +91,6 @@ E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\obj\Debug
 E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\obj\Debug\EstateProject.dll
 E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\obj\Debug\EstateProject.pdb
 <<<<<<< HEAD
-E:\CNTT_UTC\Nam3\Semester_2\WEB\BTL\Estate\EstateProject\EstateProject\obj\Debug\EstateProject.csproj.AssemblyReference.cache
 D:\AriesS\Môn Học\Năm 3 kì 2\Lập Trình Web\BTL\Estate_Csharp\EstateProject\EstateProject\bin\EstateProject.dll.config
 D:\AriesS\Môn Học\Năm 3 kì 2\Lập Trình Web\BTL\Estate_Csharp\EstateProject\EstateProject\bin\EstateProject.dll
 D:\AriesS\Môn Học\Năm 3 kì 2\Lập Trình Web\BTL\Estate_Csharp\EstateProject\EstateProject\bin\EstateProject.pdb
