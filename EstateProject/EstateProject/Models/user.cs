@@ -5,19 +5,22 @@ namespace EstateProject.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
-    using System.Web;
 
     public partial class user
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public user()
         {
-            assignmentbuildings = new HashSet<assignmentbuilding>();
-            assignmentcustomers = new HashSet<assignmentcustomer>();
-            transactions = new HashSet<transaction>();
+
+            buildings = new HashSet<building>();
             contacts = new HashSet<contact>();
 
-        }  
+
+        
+
+            buildings = new HashSet<building>();
+        }
+
 
         public int id { get; set; }
 
@@ -56,16 +59,17 @@ namespace EstateProject.Models
 
         [StringLength(255)]
         public string image { get; set; }
-     
+
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<assignmentbuilding> assignmentbuildings { get; set; }
+        public virtual ICollection<building> buildings { get; set; }
+
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<assignmentcustomer> assignmentcustomers { get; set; }
+        public virtual ICollection<contact> contacts { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<transaction> transactions { get; set; }
+        public virtual ICollection<building> buildings { get; set; }
+
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<contact> contacts { get; set; }
