@@ -30,8 +30,7 @@ namespace EstateProject.Controllers
                     return View(data);
                 }
             }
-            Response.StatusCode = 404;
-            return null;
+            return RedirectToAction("Index", "Login");
         }
 
 

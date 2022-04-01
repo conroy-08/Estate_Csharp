@@ -15,8 +15,9 @@ namespace EstateProject.Models
             assignmentbuildings = new HashSet<assignmentbuilding>();
             assignmentcustomers = new HashSet<assignmentcustomer>();
             transactions = new HashSet<transaction>();
-        }
+            contacts = new HashSet<contact>();
 
+        }  
 
         public int id { get; set; }
 
@@ -65,5 +66,8 @@ namespace EstateProject.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<transaction> transactions { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<contact> contacts { get; set; }
     }
 }
